@@ -1,6 +1,8 @@
 import Image from "next/image";
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
-
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import MenuIcon from '@mui/icons-material/Menu';
+import { Input } from "@/components/ui/input";
 
 export default function Home() {
   return (
@@ -16,7 +18,7 @@ export default function Home() {
           <h1 className="text-xl font-bold">Paper Trail</h1>
         </div>
 
-        <div className="flex gap-10 justify-between">
+        <div className="hidden my-auto lg:flex gap-10 justify-between">
           <label className=" underline cursor-pointer">Home</label>
           <label className="cursor-pointer">Contact</label>
           <label className="cursor-pointer">About</label>
@@ -24,8 +26,18 @@ export default function Home() {
         </div>
 
 
-        <div className="flex">
-          <ShoppingCartOutlinedIcon />
+        <div className="my-auto flex gap-5">
+
+          <div className="hidden my-auto lg:flex ">
+            <Input type="text" placeholder="What are you looking for?" />
+          </div>
+
+          <div className="flex my-auto gap-5 ">
+            <FavoriteBorderIcon className="cursor-pointer" />
+            <ShoppingCartOutlinedIcon className="cursor-pointer" />
+            <MenuIcon className="ml-4 flex cursor-pointer" />
+          </div>
+
         </div>
 
       </div>
