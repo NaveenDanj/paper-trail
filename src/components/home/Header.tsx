@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input";
 
 export default function Header() {
     return (
-        <div style={{ border: '1px solid rgba(0,0,0,0.2)' }} className="w-full flex justify-between pt-10 pb-5 px-24">
+        <div style={{ border: '1px solid rgba(0,0,0,0.2)' }} className="w-full flex justify-between pt-10 pb-5 px-10 lg:px-24">
 
             <div className="my-auto">
                 <h1 className="text-xl font-bold">Paper Trail</h1>
