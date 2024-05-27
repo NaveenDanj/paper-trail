@@ -1,3 +1,4 @@
+import BestSeller from "@/components/home/BestSeller";
 import BrowsByCategories from "@/components/home/BrowsByCategories";
 import FlashSales from "@/components/home/FlashSales";
 import Header from "@/components/home/Header";
@@ -18,6 +19,7 @@ export default function Home() {
         <MainBanner />
         <FlashSales />
         <BrowsByCategories />
+        <BestSeller />
       </div>
 
     </main>
