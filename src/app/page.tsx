@@ -1,3 +1,4 @@
+import BrowsByCategories from "@/components/home/BrowsByCategories";
 import FlashSales from "@/components/home/FlashSales";
 import Header from "@/components/home/Header";
 import MainBanner from "@/components/home/MainBanner";
@@ -11,10 +12,12 @@ export default function Home() {
       </div>
 
       <Header />
+
+
       <div className="w-full h-[calc(100vh-140px)] overflow-y-auto pb-10">
         <MainBanner />
         <FlashSales />
-        <FlashSales />
+        <BrowsByCategories />
       </div>
 
     </main>
