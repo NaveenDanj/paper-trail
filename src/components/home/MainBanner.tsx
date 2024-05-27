@@ -18,7 +18,7 @@ export default function MainBanner() {
 
             </div>
 
-            <div style={{ backgroundImage: 'url("https://images.playground.com/bed235c13fcf40fdacc806d7c183047f.jpeg")' }} className="lg:flex w-full h-[300px] lg:h-auto ml-5 bg-cover bg-center flex flex-grow mt-5 px-2">
+            <div style={{ backgroundImage: 'url("https://images.playground.com/bed235c13fcf40fdacc806d7c183047f.jpeg")' }} className="lg:flex w-full h-[300px] lg:h-auto lg:ml-5 bg-cover bg-center flex flex-grow mt-5 px-2">
             </div>
 
         </div>

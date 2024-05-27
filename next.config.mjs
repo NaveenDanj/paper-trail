@@ -6,8 +6,14 @@ const nextConfig = {
         protocol: "https",
         hostname: "images.playground.com",
       },
+      {
+        protocol: "https",
+        hostname: "*",
+      },
     ],
   },
 };
+
+// www.promateworld.com
 
 export default nextConfig;
