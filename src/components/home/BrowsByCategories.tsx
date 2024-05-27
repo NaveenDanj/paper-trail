@@ -7,6 +7,7 @@ import {
     CarouselPrevious,
 } from "@/components/ui/carousel"
 import ProductCard from "../global/ProductCard"
+import CategoryCard from "../global/CategoryCard"
 
 
 export default function BrowsByCategories() {
@@ -30,20 +31,15 @@ export default function BrowsByCategories() {
                     className="w-full "
                 >
                     <CarouselContent>
-                        {Array.from({ length: 5 }).map((_, index) => (
-                            <CarouselItem key={index} className=" sm:basis-1/2 lg:basis-1/3">
-                                <ProductCard />
+                        {Array.from({ length: 10 }).map((_, index) => (
+                            <CarouselItem key={index} className="basis-1/2 sm:basis-1/3 lg:basis-1/6">
+                                <CategoryCard />
                             </CarouselItem>
                         ))}
                     </CarouselContent>
                     <CarouselPrevious />
                     <CarouselNext />
                 </Carousel>
-            </div>
-
-
-            <div style={{ borderBottom: '1px solid rgba(0,0,0,0.2)' }} className="mt-16 pb-10 w-full flex justify-center">
-                <button className="bg-[#DB4444] rounded-md px-5 justify-center items-center text-white text-sm p-2 mx-auto">View All Products</button>
             </div>
         </div>
     )
