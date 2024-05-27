@@ -6,7 +6,6 @@ import {
     CarouselNext,
     CarouselPrevious,
 } from "@/components/ui/carousel"
-import ProductCard from "../global/ProductCard"
 import CategoryCard from "../global/CategoryCard"
 
 
