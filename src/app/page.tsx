@@ -4,6 +4,7 @@ import BrowsByCategories from "@/components/home/BrowsByCategories";
 import FlashSales from "@/components/home/FlashSales";
 import Header from "@/components/home/Header";
 import MainBanner from "@/components/home/MainBanner";
+import OurProduct from "@/components/home/OurProducts";
 
 export default function Home() {
   return (
@@ -22,6 +23,7 @@ export default function Home() {
         <BrowsByCategories />
         <BestSeller />
         <BannerSection />
+        <OurProduct />
       </div>
 
     </main>
