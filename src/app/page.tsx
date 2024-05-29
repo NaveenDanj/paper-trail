@@ -5,6 +5,8 @@ import FlashSales from "@/components/home/FlashSales";
 import Header from "@/components/home/Header";
 import MainBanner from "@/components/home/MainBanner";
 import OurProduct from "@/components/home/OurProducts";
+import NewArrival from "@/components/home/NewArrival";
+import Footer from "@/components/home/Footer";
 
 export default function Home() {
   return (
@@ -17,13 +19,15 @@ export default function Home() {
       <Header />
 
 
-      <div className="w-full h-[calc(100vh-140px)] overflow-y-auto pb-10">
+      <div className="w-full h-[calc(100vh-140px)] overflow-y-auto">
         <MainBanner />
         <FlashSales />
         <BrowsByCategories />
         <BestSeller />
         <BannerSection />
         <OurProduct />
+        {/* <NewArrival /> */}
+        <Footer />
       </div>
 
     </main>

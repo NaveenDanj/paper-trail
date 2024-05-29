@@ -51,7 +51,7 @@ export default function BannerSection() {
 
                 <div className="w-full flex justify-center items-center">
                     <AspectRatio className="  flex justify-center items-center md:block" ratio={16 / 9}>
-                        <Image className=" relative md:top-[0px] w-[300px] h-[210px] " src={'/banner.png'} alt="" width={600} height={420} />
+                        <Image className=" relative md:top-[60px] w-[300px] h-[210px] " src={'/banner.png'} alt="" width={600} height={420} />
                     </AspectRatio>
                 </div>
 
