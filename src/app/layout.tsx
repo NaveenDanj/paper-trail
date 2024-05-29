@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import Header from "@/components/home/Header";
+import Footer from "@/components/home/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,7 +18,26 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className="flex min-h-screen flex-col">
+
+        <div className="text-white p-2 bg-black flex w-full justify-center text-center">
+          <label className="text-sm">Summer Sale For All Swim Suits And Free Express Delivery - OFF 50%!</label>
+        </div>
+
+        <Header />
+
+        <div className="w-full h-[calc(100vh-140px)] overflow-y-auto">
+          {/* <MainBanner />
+            <FlashSales />
+            <BrowsByCategories />
+            <BestSeller />
+            <BannerSection />
+            <OurProduct /> */}
+          {/* <NewArrival /> */}
+          {/* <Footer /> */}
+          {children}
+        </div>
+      </body>
     </html>
   );
 }

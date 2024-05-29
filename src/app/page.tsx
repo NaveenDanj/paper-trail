@@ -10,26 +10,14 @@ import Footer from "@/components/home/Footer";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col">
-
-      <div className="text-white p-2 bg-black flex w-full justify-center text-center">
-        <label className="text-sm">Summer Sale For All Swim Suits And Free Express Delivery - OFF 50%!</label>
-      </div>
-
-      <Header />
-
-
-      <div className="w-full h-[calc(100vh-140px)] overflow-y-auto">
-        <MainBanner />
-        <FlashSales />
-        <BrowsByCategories />
-        <BestSeller />
-        <BannerSection />
-        <OurProduct />
-        {/* <NewArrival /> */}
-        <Footer />
-      </div>
-
-    </main>
+    <div className="">
+      <MainBanner />
+      <FlashSales />
+      <BrowsByCategories />
+      <BestSeller />
+      <BannerSection />
+      <OurProduct />
+      <Footer />
+    </div>
   );
 }
