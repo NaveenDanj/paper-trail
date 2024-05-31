@@ -1,5 +1,6 @@
 import Footer from "@/components/home/Footer";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Cart() {
     return (
@@ -176,7 +177,9 @@ export default function Cart() {
                             </div>
 
                             <div className="mt-5 flex justify-center">
-                                <button className="bg-[#DB4444] rounded-md px-2 justify-center items-center text-white text-sm p-2 ">Proceed to checkout</button>
+                                <Link href={'/checkout'}>
+                                    <button className="bg-[#DB4444] rounded-md px-2 justify-center items-center text-white text-sm p-2 ">Proceed to checkout</button>
+                                </Link>
                             </div>
 
 
