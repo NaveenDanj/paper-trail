@@ -2,6 +2,7 @@ import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import MenuIcon from '@mui/icons-material/Menu';
 import { Input } from "@/components/ui/input";
+import MenuDrawer from '../global/MenuDrawer';
 
 
 export default function Header() {
@@ -29,7 +30,7 @@ export default function Header() {
                 <div className="flex my-auto gap-5 ">
                     <FavoriteBorderIcon className="cursor-pointer" />
                     <ShoppingCartOutlinedIcon className="cursor-pointer" />
-                    <MenuIcon className="ml-4 flex cursor-pointer" />
+                    <MenuDrawer />
                 </div>
 
             </div>

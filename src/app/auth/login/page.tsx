@@ -10,7 +10,7 @@ export default function Login() {
 
             <div className="w-full mb-0 flex flex-col gap-5 md:gap-2 sm:flex-row mt-10">
 
-                <div className="flex w-full">
+                <div className="flex w-full p-5">
                     <AspectRatio className=" flex justify-center items-center md:block">
                         <Image className="w-full h-full bg-center bg-cover object-cover" src={'/login-banner.png'} width={600} height={300} alt="" />
                     </AspectRatio>
