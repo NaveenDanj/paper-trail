@@ -5,7 +5,7 @@ export default function Cart() {
     return (
         <div className="w-full flex flex-col">
 
-            <div className="flex flex-col  px-10 lg:px-24 mt-10 pb-10 ">
+            <div className="flex flex-col px-3 lg:px-24 mt-10 pb-10 ">
 
                 <div className="mt-8 w-full ">
 
