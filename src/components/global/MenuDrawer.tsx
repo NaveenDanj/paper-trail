@@ -36,7 +36,7 @@ export default function MenuDrawer() {
                         <label className="text-xl cursor-pointer hover:underline">Contact</label>
                         <label className="text-xl cursor-pointer hover:underline">About</label>
                         <Link href={'/auth/register'}><label className="text-xl cursor-pointer hover:underline">Sign Up</label></Link>
-                        <label className="text-xl cursor-pointer hover:underline">Cart</label>
+                        <Link href={'/cart'}><label className="text-xl cursor-pointer hover:underline">Cart</label></Link>
                         <Link href={'/wishlist'}><label className="text-xl cursor-pointer hover:underline">Wish list</label></Link>
                     </div>
 
