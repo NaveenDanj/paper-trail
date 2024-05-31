@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/sheet"
 
 import MenuIcon from '@mui/icons-material/Menu';
+import Link from "next/link";
 
 
 
@@ -21,18 +22,22 @@ export default function MenuDrawer() {
             </SheetTrigger>
             <SheetContent>
                 <SheetHeader>
-                    <SheetTitle>Edit profile</SheetTitle>
+                    <SheetTitle>Main Menu</SheetTitle>
                     <SheetDescription>
-                        Make changes to your profile here. Click save when youre done.
+                        <center><label>Welcome to The Paper Trail! Discover high-quality stationery to inspire creativity and enhance productivity, with exceptional service and fast shipping. Happy shopping!</label></center>
                     </SheetDescription>
                 </SheetHeader>
-                <div className="flex flex-col w-full h-full bg-blue-500">
 
-                    <div className="flex flex-col bg-red-500">
-                        asd
-                        <div className="bg-green-500 flex flex-grow">
-                            asdsssss
-                        </div>
+                <div className="flex flex-col w-full h-full">
+
+                    <div className="flex flex-col gap-6 mt-5">
+                        <Link href={'/'}><label className="text-xl cursor-pointer hover:underline">Home</label></Link>
+                        <label className="text-xl cursor-pointer hover:underline">Products</label>
+                        <label className="text-xl cursor-pointer hover:underline">Contact</label>
+                        <label className="text-xl cursor-pointer hover:underline">About</label>
+                        <Link href={'/auth/register'}><label className="text-xl cursor-pointer hover:underline">Sign Up</label></Link>
+                        <label className="text-xl cursor-pointer hover:underline">Cart</label>
+                        <Link href={'/wishlist'}><label className="text-xl cursor-pointer hover:underline">Wish list</label></Link>
                     </div>
 
 
