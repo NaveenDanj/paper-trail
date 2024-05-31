@@ -150,7 +150,7 @@ export default function Cart() {
 
                     </div>
 
-                    <div className="w-full flex justify-end">
+                    <div className="w-full flex justify-start md:justify-center lg:justify-end lg:mt-0 mt-5">
 
                         <div style={{ border: '1px solid rgba(0,0,0,0.2)' }} className="flex flex-col p-3 w-full max-w-[500px]">
 
