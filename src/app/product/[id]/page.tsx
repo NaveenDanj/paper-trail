@@ -35,7 +35,7 @@ export default function ProductPage() {
 
                         <div className="mt-3 flex flex-col gap-3">
                             <div>
-                                <label className="text-md font-semibold">HAVIT HV-G92 Gamepad</label>
+                                <label className="text-2xl font-semibold">HAVIT HV-G92 Gamepad</label>
                                 <div className="flex my-auto mt-3">
                                     <StarIcon className="text-sm text-[#FFAD33]" />
                                     <StarIcon className="text-sm text-[#FFAD33]" />
