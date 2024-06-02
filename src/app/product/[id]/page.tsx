@@ -159,7 +159,7 @@ export default function ProductPage() {
 
                 </div>
 
-                <div className="mt-8 w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 gap-x-3">
+                <div className=" mt-8 w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 gap-x-3">
                     <ProductCard />
                     <ProductCard />
                     <ProductCard />
