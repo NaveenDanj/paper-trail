@@ -43,7 +43,7 @@ export default function Contact() {
 
                     <div className="flex flex-col gap-5 p-3 w-full shadow-lg">
 
-                        <div className="flex w-full gap-2">
+                        <div className="flex gap-5 flex-col lg:flex-row w-full lg:gap-2">
 
                             <div className="w-full flex bg-[#F5F5F5] p-2">
                                 <input className="w-full px-2 bg-[#F5F5F5]" placeholder="Your Name *" style={{ outline: 'none' }} type="text" />

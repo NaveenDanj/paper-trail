@@ -33,7 +33,7 @@ export default function MenuDrawer() {
                     <div className="flex flex-col gap-6 mt-5">
                         <Link href={'/'}><label className="text-xl cursor-pointer hover:underline">Home</label></Link>
                         <label className="text-xl cursor-pointer hover:underline">Products</label>
-                        <label className="text-xl cursor-pointer hover:underline">Contact</label>
+                        <Link href={'/contact'}><label className="text-xl cursor-pointer hover:underline">Contact</label></Link>
                         <label className="text-xl cursor-pointer hover:underline">About</label>
                         <Link href={'/auth/register'}><label className="text-xl cursor-pointer hover:underline">Sign Up</label></Link>
                         <Link href={'/cart'}><label className="text-xl cursor-pointer hover:underline">Cart</label></Link>

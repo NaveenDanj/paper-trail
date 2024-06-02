@@ -158,7 +158,6 @@ export default function Checkout() {
                                     <button className="bg-[#DB4444] w-[150px] rounded-md px-2 justify-center items-center text-white text-sm p-3 ">Place Order</button>
                                 </div>
 
-
                             </div>
 
                         </div>
