@@ -70,9 +70,9 @@ export default function Checkout() {
 
                     </div>
 
-                    <div className="flex justify-center lg:justify-end items-center w-full">
+                    <div className="flex justify-center lg:justify-end items-center w-full mt-10 lg:mt-0">
 
-                        <div className="flex w-full flex-col gap-8 p-3 max-w-[350px]">
+                        <div className="flex w-full flex-col gap-8 py-3 max-w-[350px]">
 
                             <div className="flex w-full justify-between">
 
@@ -129,7 +129,11 @@ export default function Checkout() {
                             </div>
 
                             <div className="w-full mt-0">
-                                <RadioGroup defaultValue="comfortable">
+                                <RadioGroup defaultValue="card">
+                                    <div className="flex items-center space-x-2">
+                                        <RadioGroupItem value="card" id="r2" />
+                                        <label htmlFor="r2">Card</label>
+                                    </div>
                                     <div className="flex items-center space-x-2">
                                         <RadioGroupItem value="default" id="r1" />
                                         <label htmlFor="r1">Bank</label>
