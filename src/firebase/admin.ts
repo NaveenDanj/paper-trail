@@ -7,11 +7,11 @@ function formatPrivateKey(key:string){
 
 if (admin.apps.length == 0){
 
-    const privateKey = formatPrivateKey(process.env.FIREBASE_PRIVATE_KEY as string)
+    const privateKey = formatPrivateKey(process.env.NEXT_PUBLIC_FIREBASE_PRIVATE_KEY as string)
 
     admin.initializeApp({
         credential: admin.credential.cert({
-            clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
+            clientEmail: process.env.NEXT_PUBLIC_FIREBASE_CLIENT_EMAIL,
             privateKey,
             projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID
         }),
