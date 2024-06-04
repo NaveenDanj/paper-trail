@@ -65,6 +65,8 @@ export default function Register() {
 
     const handleGoogleSignIn = async () => {
         try {
+            setError('')
+
             const res = await signInWithPopup(auth, provider)
 
             const user: User = {
