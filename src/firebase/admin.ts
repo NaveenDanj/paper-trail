@@ -2,6 +2,11 @@
 import admin from 'firebase-admin';
 var serviceAccount = require("../paper-trail.json");
 
-admin.initializeApp({
-    credential: admin.credential.cert(serviceAccount)
-});
+
+if (admin.apps == null){
+    admin.initializeApp({
+        credential: admin.credential.cert(serviceAccount)
+    });
+}
+
+export default admin

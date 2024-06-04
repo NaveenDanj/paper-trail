@@ -3,9 +3,95 @@ import Footer from "@/components/home/Footer";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import Image from "next/image";
 import GoogleIcon from '@mui/icons-material/Google';
+import { useState } from "react";
+import { createUserWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import { auth } from '@/firebase/config'
+import { AlertError } from "@/components/global/AlertError";
+import { GoogleAuthProvider } from "firebase/auth";
+import { handleUserSave } from "@/actions/UserAction";
+import { User } from "@/types/types";
 
+const provider = new GoogleAuthProvider();
 
 export default function Register() {
+    const [name, setName] = useState<string>('')
+    const [email, setEmail] = useState<string>('')
+    const [password, setPassword] = useState<string>('')
+    const [error, setError] = useState<string>('')
+    const [loading, setLoading] = useState<boolean>(false);
+
+    const handleRegister = async (e: any) => {
+        e.preventDefault();
+
+        setError('')
+        setLoading(true)
+
+        if (!email || !password) {
+            setError('Email or password must be required!')
+            return
+        }
+
+        try {
+            const res = await createUserWithEmailAndPassword(auth, email, password);
+
+            const user: User = {
+                uid: res.user.uid + '',
+                fullName: name,
+                email: res.user.email + '',
+                phone: res.user.phoneNumber + '',
+                dp: res.user.photoURL + '',
+                companyName: "",
+                streetAddress: "",
+                apartment: "",
+                city: ""
+            }
+
+            const result = await handleUserSave(JSON.stringify(user))
+
+            if (!result.success) {
+                setError(result.message)
+            }
+
+            setLoading(false)
+        } catch (err) {
+            // @ts-ignore
+            setError(err.message + '')
+            setLoading(false)
+        }
+
+    }
+
+
+    const handleGoogleSignIn = async () => {
+        try {
+            const res = await signInWithPopup(auth, provider)
+
+            const user: User = {
+                uid: res.user.uid + '',
+                fullName: res.user.displayName + '',
+                email: res.user.email + '',
+                phone: res.user.phoneNumber + '',
+                dp: res.user.photoURL + '',
+                companyName: "",
+                streetAddress: "",
+                apartment: "",
+                city: ""
+            }
+
+            const result = await handleUserSave(JSON.stringify(user))
+
+            if (!result.success) {
+                setError(result.message)
+            }
+
+        } catch (err) {
+            // @ts-ignore
+            setError(err.message + '')
+        }
+
+    }
+
+
     return (
         <div className="flex flex-col w-full">
 
@@ -23,32 +109,34 @@ export default function Register() {
 
                         <h1 className="text-3xl font-semibold">Create an account</h1>
 
-                        <label className="text-sm mt-3">Enter your details below</label>
+                        <label className="text-sm mt-3 mb-3">Enter your details below</label>
 
-                        <div className="pb-2 flex flex-col gap-10 mt-8">
+                        {error != '' && <AlertError errorMassage={error} />}
+
+                        <form method="POST" onSubmit={handleRegister} className="pb-2 flex flex-col gap-10 mt-8">
 
                             <div style={{ borderBottom: '1px solid rgba(0,0,0,0.2)' }} className="pb-3 flex w-full ">
-                                <input className="w-full" style={{ outline: 'none' }} type="text" placeholder="Name" />
+                                <input required onChange={(e) => setName(e.target.value)} value={name} className="w-full" style={{ outline: 'none' }} type="text" placeholder="Name" />
                             </div>
 
                             <div style={{ borderBottom: '1px solid rgba(0,0,0,0.2)' }} className="pb-3 flex w-full ">
-                                <input className="w-full" style={{ outline: 'none' }} type="text" placeholder="Email or Phone Number" />
+                                <input required onChange={(e) => setEmail(e.target.value)} value={email} className="w-full" style={{ outline: 'none' }} type="email" placeholder="Email or Phone Number" />
                             </div>
 
                             <div style={{ borderBottom: '1px solid rgba(0,0,0,0.2)' }} className="pb-3 flex w-full ">
-                                <input className="w-full" onChange={(e) => console.log("key is -> ", e.target.value)} style={{ outline: 'none' }} type="password" placeholder="Password" />
+                                <input required onChange={(e) => setPassword(e.target.value)} value={password} className="w-full" style={{ outline: 'none' }} type="password" placeholder="Password" />
                             </div>
 
                             <div className="flex flex-col gap-5 w-full">
-                                <button className="bg-[#DB4444] rounded-md px-5 justify-center items-center text-white text-sm p-2 w-full ">Create Account</button>
-                                <button style={{ border: '1px solid rgba(0,0,0,0.2)' }} className="rounded-md gap-2 font-semibold px-5 justify-center items-center text-black text-sm p-2 w-full flex ">
+                                <button type="submit" className="bg-[#DB4444] rounded-md px-5 justify-center items-center text-white text-sm p-2 w-full ">Create Account</button>
+                                <button onClick={handleGoogleSignIn} style={{ border: '1px solid rgba(0,0,0,0.2)' }} className="rounded-md gap-2 font-semibold px-5 justify-center items-center text-black text-sm p-2 w-full flex ">
                                     <GoogleIcon className="text-sm" />
                                     Sign up with google</button>
                                 <center><label>Already have account? <span className=" cursor-pointer underline">Log in</span></label></center>
                             </div>
 
 
-                        </div>
+                        </form>
 
                     </div>
 
