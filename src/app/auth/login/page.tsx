@@ -8,11 +8,13 @@ import { auth } from '@/firebase/config'
 import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import GoogleIcon from '@mui/icons-material/Google';
 import { GoogleAuthProvider } from "firebase/auth";
+import { useRouter } from 'next/navigation';
 
 const provider = new GoogleAuthProvider();
 
 
 export default function Login() {
+    const router = useRouter();
 
     const [email, setEmail] = useState<string>('')
     const [password, setPassword] = useState<string>('')
@@ -32,6 +34,7 @@ export default function Login() {
         try {
             const res = await signInWithEmailAndPassword(auth, email, password);
             setLoading(false)
+            router.replace('/account')
         } catch (err) {
             // @ts-ignore
             setError(err.message + '')
@@ -46,6 +49,7 @@ export default function Login() {
             setLoading(true)
             const res = await signInWithPopup(auth, provider)
             setLoading(false)
+            router.replace('/account')
         } catch (err) {
             // @ts-ignore
             setError(err.message + '')

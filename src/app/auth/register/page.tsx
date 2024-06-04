@@ -11,10 +11,15 @@ import { GoogleAuthProvider } from "firebase/auth";
 import { handleUserSave } from "@/actions/UserAction";
 import { User } from "@/types/types";
 import Link from "next/link";
+import { useRouter } from 'next/navigation';
+
 
 const provider = new GoogleAuthProvider();
 
 export default function Register() {
+
+    const router = useRouter();
+
     const [name, setName] = useState<string>('')
     const [email, setEmail] = useState<string>('')
     const [password, setPassword] = useState<string>('')
@@ -51,9 +56,12 @@ export default function Register() {
 
             if (!result.success) {
                 setError(result.message)
+                return
             }
 
+            router.replace('/account');
             setLoading(false)
+
         } catch (err) {
             // @ts-ignore
             setError(err.message + '')
@@ -66,6 +74,7 @@ export default function Register() {
     const handleGoogleSignIn = async () => {
         try {
             setError('')
+            setLoading(true)
 
             const res = await signInWithPopup(auth, provider)
 
@@ -85,15 +94,17 @@ export default function Register() {
 
             if (!result.success) {
                 setError(result.message)
+                return
             }
 
+            router.replace('/account');
+            setLoading(false)
         } catch (err) {
             // @ts-ignore
             setError(err.message + '')
         }
 
     }
-
 
     return (
         <div className="flex flex-col w-full">
