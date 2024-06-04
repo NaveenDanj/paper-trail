@@ -16,8 +16,6 @@
 # production
 /build
 
-/src/paper-trail.json
-
 # misc
 .DS_Store
 *.pem
