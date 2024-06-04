@@ -1,5 +1,4 @@
 import admin from 'firebase-admin';
-var serviceAccount = require("../paper-trail.json");
 
 function formatPrivateKey(key:string){
     return key.replace(/\\n/g, "\n")
