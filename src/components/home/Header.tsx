@@ -1,8 +1,8 @@
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import MenuIcon from '@mui/icons-material/Menu';
 import { Input } from "@/components/ui/input";
 import MenuDrawer from '../global/MenuDrawer';
+import Link from 'next/link';
 
 
 export default function Header() {
@@ -14,10 +14,10 @@ export default function Header() {
             </div>
 
             <div className="hidden my-auto lg:flex gap-10 justify-between">
-                <label className=" underline cursor-pointer">Home</label>
-                <label className="cursor-pointer">Contact</label>
-                <label className="cursor-pointer">About</label>
-                <label className="cursor-pointer">Sign Up</label>
+                <Link href='/'><label className="hover:underline cursor-pointer">Home</label></Link>
+                <Link href='/contact'><label className="hover:underline cursor-pointer">Contact</label></Link>
+                <Link href='/about'><label className="hover:underline cursor-pointer">About</label></Link>
+                <Link href='/auth/register'><label className="hover:underline cursor-pointer">Sign Up</label></Link>
             </div>
 
 

@@ -5,7 +5,12 @@ import Image from "next/image";
 import { AlertError } from "@/components/global/AlertError";
 import { useState } from "react";
 import { auth } from '@/firebase/config'
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import GoogleIcon from '@mui/icons-material/Google';
+import { GoogleAuthProvider } from "firebase/auth";
+
+const provider = new GoogleAuthProvider();
+
 
 export default function Login() {
 
@@ -33,6 +38,19 @@ export default function Login() {
             setLoading(false)
         }
 
+    }
+
+    const handleGoogleLogin = async () => {
+        try {
+            setError('')
+            setLoading(true)
+            const res = await signInWithPopup(auth, provider)
+            setLoading(false)
+        } catch (err) {
+            // @ts-ignore
+            setError(err.message + '')
+            setLoading(false)
+        }
     }
 
     return (
@@ -66,8 +84,13 @@ export default function Login() {
                                 <input onChange={(e) => setPassword(e.target.value)} value={password} required name="password" className="w-full" style={{ outline: 'none' }} type="password" placeholder="Password" />
                             </div>
 
-                            <div className="flex flex-row justify-between w-full my-auto">
-                                <button disabled={loading} type='submit' className="bg-[#DB4444] rounded-md px-5 justify-center items-center text-white text-sm p-2 w-full max-w-[100px] my-auto">Log In</button>
+                            <div className="flex flex-col gap-5 w-full">
+                                <button disabled={loading} type='submit' className="bg-[#DB4444] rounded-md px-5 justify-center items-center text-white text-sm p-2 w-full my-auto">Log In</button>
+
+                                <button onClick={handleGoogleLogin} style={{ border: '1px solid rgba(0,0,0,0.2)' }} className="rounded-md gap-2 font-semibold px-5 justify-center items-center text-black text-sm p-2 w-full flex ">
+                                    <GoogleIcon className="text-sm" />
+                                    Sign in with google</button>
+
                                 <center><label className="text-[#DB4444] my-auto font-semibold cursor-pointer">Forget password?</label></center>
                             </div>
 

@@ -10,6 +10,7 @@ import { AlertError } from "@/components/global/AlertError";
 import { GoogleAuthProvider } from "firebase/auth";
 import { handleUserSave } from "@/actions/UserAction";
 import { User } from "@/types/types";
+import Link from "next/link";
 
 const provider = new GoogleAuthProvider();
 
@@ -132,7 +133,7 @@ export default function Register() {
                                 <button onClick={handleGoogleSignIn} style={{ border: '1px solid rgba(0,0,0,0.2)' }} className="rounded-md gap-2 font-semibold px-5 justify-center items-center text-black text-sm p-2 w-full flex ">
                                     <GoogleIcon className="text-sm" />
                                     Sign up with google</button>
-                                <center><label>Already have account? <span className=" cursor-pointer underline">Log in</span></label></center>
+                                <center><label>Already have account? <span className=" cursor-pointer underline"><Link href={'/auth/login'}>Log in</Link></span></label></center>
                             </div>
 
 
