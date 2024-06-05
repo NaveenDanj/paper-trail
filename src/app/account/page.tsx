@@ -1,4 +1,5 @@
 import GeneralTab from "@/components/account/GeneralTab";
+import PaymentOptionTab from "@/components/account/PaymentOptionTab";
 import Footer from "@/components/home/Footer";
 
 export default function Account() {
@@ -14,7 +15,7 @@ export default function Account() {
                             <label className=" font-bold">Manage My Account</label>
                             <div className="ml-5 mt-3 flex flex-col gap-2 ">
                                 <label className="text-sm font-normal cursor-pointer">My Profile</label>
-                                <label className="text-sm font-normal cursor-pointer">My Payment options</label>
+                                <label className="text-sm font-normal cursor-pointer">My Order Information</label>
                             </div>
                         </div>
 
@@ -29,7 +30,8 @@ export default function Account() {
                     </div>
 
                     <div className="flex flex-col shadow-lg flex-grow p-5">
-                        <GeneralTab />
+                        {/* <GeneralTab /> */}
+                        <PaymentOptionTab />
                     </div>
 
                 </div>
