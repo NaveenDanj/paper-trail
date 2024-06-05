@@ -21,3 +21,7 @@ export function LoadingScreen({ open }: IProp) {
         </AlertDialog>
     )
 }
+
+export function LoadingInlineComponent() {
+    return (<AutorenewIcon className='text-xl animate-spin' />)
+}

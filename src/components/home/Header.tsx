@@ -15,6 +15,7 @@ export default function Header() {
 
     useEffect(() => {
         console.log("user is => ", user)
+
     }, [user])
 
 
@@ -42,7 +43,7 @@ export default function Header() {
                 <div className="flex my-auto gap-5 ">
                     <FavoriteBorderIcon className="cursor-pointer" />
                     <ShoppingCartOutlinedIcon className="cursor-pointer" />
-                    {user && <AccountCircleOutlinedIcon className='cursor-pointer' />}
+                    {user && <Link href={'/account'}><AccountCircleOutlinedIcon className='cursor-pointer' /></Link>}
                     <MenuDrawer />
                 </div>
 
