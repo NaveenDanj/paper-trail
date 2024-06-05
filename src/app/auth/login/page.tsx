@@ -9,6 +9,7 @@ import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import GoogleIcon from '@mui/icons-material/Google';
 import { GoogleAuthProvider } from "firebase/auth";
 import { useRouter } from 'next/navigation';
+import { LoadingScreen } from "@/components/global/LoadingScreen";
 
 const provider = new GoogleAuthProvider();
 
@@ -28,6 +29,7 @@ export default function Login() {
 
         if (!email || !password) {
             setError('Email or password must be required!')
+            setLoading(false)
             return
         }
 
@@ -106,7 +108,7 @@ export default function Login() {
 
             </div>
             <Footer />
-
+            <LoadingScreen open={loading} />
         </div>
     )
 }

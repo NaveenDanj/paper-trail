@@ -1,5 +1,6 @@
 import GeneralTab from "@/components/account/GeneralTab";
 import PaymentOptionTab from "@/components/account/PaymentOptionTab";
+import { LoadingScreen } from "@/components/global/LoadingScreen";
 import Footer from "@/components/home/Footer";
 
 export default function Account() {

@@ -12,6 +12,7 @@ import { handleUserSave } from "@/actions/UserAction";
 import { User } from "@/types/types";
 import Link from "next/link";
 import { useRouter } from 'next/navigation';
+import { LoadingScreen } from "@/components/global/LoadingScreen";
 
 
 const provider = new GoogleAuthProvider();
@@ -34,6 +35,7 @@ export default function Register() {
 
         if (!email || !password) {
             setError('Email or password must be required!')
+            setLoading(false)
             return
         }
 
@@ -56,6 +58,7 @@ export default function Register() {
 
             if (!result.success) {
                 setError(result.message)
+                setLoading(false)
                 return
             }
 
@@ -94,6 +97,7 @@ export default function Register() {
 
             if (!result.success) {
                 setError(result.message)
+                setLoading(false)
                 return
             }
 
@@ -102,6 +106,7 @@ export default function Register() {
         } catch (err) {
             // @ts-ignore
             setError(err.message + '')
+            setLoading(false)
         }
 
     }
@@ -159,7 +164,7 @@ export default function Register() {
 
             </div>
             <Footer />
-
+            <LoadingScreen open={loading} />
         </div>
     )
 }
