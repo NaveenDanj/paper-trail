@@ -1,4 +1,19 @@
-export default function PaymentOptionTab() {
+import { User } from "@/types/types";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+
+type IProp = {
+    user: User
+}
+
+
+export default function PaymentOptionTab({ user }: IProp) {
+
+    const [loading, setLoading] = useState<boolean>(false);
+    const router = useRouter()
+    const [formData, setFormData] = useState<User>(user)
+
+
     return (
         <>
             <h1 className="text-xl text-[#DB4444]">Order Information</h1>
@@ -8,14 +23,14 @@ export default function PaymentOptionTab() {
                     <div className="flex w-full flex-col gap-2">
                         <label className="font-bold text-sm">City</label>
                         <div className="w-full flex bg-[#F5F5F5] p-2">
-                            <input placeholder="Enter the first name" className="w-full px-2 bg-[#F5F5F5]" style={{ outline: 'none' }} type="text" />
+                            <input placeholder="Enter the city" className="w-full px-2 bg-[#F5F5F5]" style={{ outline: 'none' }} type="text" />
                         </div>
                     </div>
 
                     <div className="flex w-full flex-col gap-2">
                         <label className="font-bold text-sm">Apartment</label>
                         <div className="w-full flex bg-[#F5F5F5] p-2">
-                            <input placeholder="Enter the last name" className="w-full px-2 bg-[#F5F5F5]" style={{ outline: 'none' }} type="text" />
+                            <input placeholder="Enter the apartment" className="w-full px-2 bg-[#F5F5F5]" style={{ outline: 'none' }} type="text" />
                         </div>
                     </div>
                 </div>
@@ -24,16 +39,7 @@ export default function PaymentOptionTab() {
                     <div className="flex w-full flex-col gap-2">
                         <label className="font-bold text-sm">Company Name</label>
                         <div className="w-full flex bg-[#F5F5F5] p-2">
-                            <input placeholder="Enter the first name" className="w-full px-2 bg-[#F5F5F5]" style={{ outline: 'none' }} type="text" />
-                        </div>
-                    </div>
-                </div>
-
-                <div className="flex flex-row w-full mt-5 gap-5">
-                    <div className="flex w-full flex-col gap-2">
-                        <label className="font-bold text-sm">Phone</label>
-                        <div className="w-full flex bg-[#F5F5F5] p-2">
-                            <input placeholder="Enter the first name" className="w-full px-2 bg-[#F5F5F5]" style={{ outline: 'none' }} type="text" />
+                            <input placeholder="Enter the company name" className="w-full px-2 bg-[#F5F5F5]" style={{ outline: 'none' }} type="text" />
                         </div>
                     </div>
                 </div>
