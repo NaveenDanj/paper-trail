@@ -43,6 +43,7 @@ export default function Register() {
             const res = await createUserWithEmailAndPassword(auth, email, password);
 
             const user: User = {
+                zip: '',
                 uid: res.user.uid + '',
                 fullName: name,
                 email: res.user.email + '',
@@ -82,6 +83,7 @@ export default function Register() {
             const res = await signInWithPopup(auth, provider)
 
             const user: User = {
+                zip: '',
                 uid: res.user.uid + '',
                 fullName: res.user.displayName + '',
                 email: res.user.email + '',

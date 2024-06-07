@@ -5,6 +5,7 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import LocalShippingOutlinedIcon from '@mui/icons-material/LocalShippingOutlined';
 import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn';
 import ProductCard from "@/components/global/ProductCard";
+import { ProductInfo } from "@/components/product/ProductInfo";
 
 export default function ProductPage() {
 
@@ -19,7 +20,7 @@ export default function ProductPage() {
                     <div className="flex gap-3 w-full lg:w-[60vw]">
 
                         <div className="flex flex-col gap-3">
-                            <Image alt="" width={100} height={100} src={'https://www.promateworld.com/storage/mango/paper/bpfg0370-rathna-foolscap-square-a3-250-sheets-pack-150x150.png'} />
+                            <Image style={{ border: '1px solid rgba(0,0,0,0.)' }} alt="" width={100} height={100} src={'https://www.promateworld.com/storage/mango/paper/bpfg0370-rathna-foolscap-square-a3-250-sheets-pack-150x150.png'} />
                             <Image alt="" width={100} height={100} src={'https://www.promateworld.com/storage/mango/paper/bpfg0370-rathna-foolscap-square-a3-250-sheets-pack-150x150.png'} />
                             <Image alt="" width={100} height={100} src={'https://www.promateworld.com/storage/mango/paper/bpfg0370-rathna-foolscap-square-a3-250-sheets-pack-150x150.png'} />
                             <Image alt="" width={100} height={100} src={'https://www.promateworld.com/storage/mango/paper/bpfg0370-rathna-foolscap-square-a3-250-sheets-pack-150x150.png'} />
@@ -114,7 +115,7 @@ export default function ProductPage() {
                                     <div style={{ border: '1px solid rgba(0,0,0,0.2)' }} className="rounded-md flex flex-col">
 
                                         <div className="rounded-md w-full p-3 flex gap-4">
-                                            <LocalShippingOutlinedIcon className="text-[40px] my-auto" />
+                                            <LocalShippingOutlinedIcon className="text-[35px] my-auto" />
 
                                             <div className="flex flex-col my-auto gap-1">
                                                 <label className=" font-semibold">Free Delivery</label>
@@ -124,7 +125,7 @@ export default function ProductPage() {
                                         </div>
 
                                         <div style={{ borderTop: '1px solid rgba(0,0,0,0.2)' }} className="w-full p-3 flex gap-4">
-                                            <KeyboardReturnIcon className="text-[40px] my-auto" />
+                                            <KeyboardReturnIcon className="text-[35px] my-auto" />
 
                                             <div className="flex flex-col my-auto gap-1">
                                                 <label className=" font-semibold">Free Delivery</label>
@@ -148,7 +149,11 @@ export default function ProductPage() {
 
                 </div>
 
-                <div className="flex flex-col w-full justify-start items-start mt-24">
+                <div className="flex lg:w-[55%] flex-col w-full justify-start items-start mt-16 mb-5">
+                    <ProductInfo />
+                </div>
+
+                <div className="flex flex-col w-full justify-start items-start mt-10">
 
                     <div className="flex justify-between w-full">
                         <div style={{ borderLeft: '18px solid #DB4444' }} className="h-[40px] flex justify-center items-center">
