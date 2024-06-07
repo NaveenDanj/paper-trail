@@ -18,7 +18,7 @@ export default function MenuDrawer() {
     return (
         <Sheet>
             <SheetTrigger asChild>
-                <MenuIcon className="ml-4 flex cursor-pointer" />
+                <MenuIcon className="flex cursor-pointer" />
             </SheetTrigger>
             <SheetContent>
                 <SheetHeader>

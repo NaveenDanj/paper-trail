@@ -26,7 +26,7 @@ export default function ProductPage() {
                         </div>
 
                         <div className="w-full flex justify-center">
-                            <Image className="bg-cover w-[100%] bg-center object-cover" alt="" width={500} height={600} src={'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fnexttechmag.com%2Fwp-content%2Fuploads%2F2021%2F03%2FuFicTu3Ti56psJpsTGQ64C.jpg&f=1&nofb=1&ipt=50ddc1c031394dcb2bf539881583826aae3cec6fd57358099dae3f05d17e92dc&ipo=images'} />
+                            <Image className="bg-cover w-[90%] bg-center object-cover" alt="" width={400} height={500} src={'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fnexttechmag.com%2Fwp-content%2Fuploads%2F2021%2F03%2FuFicTu3Ti56psJpsTGQ64C.jpg&f=1&nofb=1&ipt=50ddc1c031394dcb2bf539881583826aae3cec6fd57358099dae3f05d17e92dc&ipo=images'} />
                         </div>
 
                     </div>

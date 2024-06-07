@@ -8,4 +8,5 @@ export type User = {
     streetAddress:string;
     apartment:string;
     city:string;
+    zip:string;
 }

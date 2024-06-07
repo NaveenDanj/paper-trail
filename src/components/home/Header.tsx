@@ -20,7 +20,7 @@ export default function Header() {
 
 
     return (
-        <div style={{ border: '1px solid rgba(0,0,0,0.2)' }} className="w-full flex justify-between pt-10 pb-5 px-10 lg:px-24">
+        <div style={{ border: '1px solid rgba(0,0,0,0.2)' }} className="w-full flex justify-between pt-5 pb-5 px-10 lg:px-24">
 
             <div className="my-auto">
                 <h1 className="text-xl font-bold">Paper Trail</h1>
@@ -41,9 +41,9 @@ export default function Header() {
                 </div>
 
                 <div className="flex my-auto gap-5 ">
-                    <FavoriteBorderIcon className="cursor-pointer" />
-                    <ShoppingCartOutlinedIcon className="cursor-pointer" />
-                    {user && <Link href={'/account'}><AccountCircleOutlinedIcon className='cursor-pointer' /></Link>}
+                    <FavoriteBorderIcon className="cursor-pointer my-auto" />
+                    <ShoppingCartOutlinedIcon className="cursor-pointer my-auto" />
+                    {user && <Link href={'/account'}><AccountCircleOutlinedIcon className='cursor-pointer my-auto' /></Link>}
                     <MenuDrawer />
                 </div>
 
