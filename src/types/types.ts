@@ -34,4 +34,9 @@ export type Product = {
     features?:string;
     isFeatured:boolean;
     isInBanner:boolean;
+    isDropshippingItem:boolean;
+    dropshippingItemDetails?: {
+        itemURL:string;
+        productID:string;
+    }
 }

@@ -20,7 +20,7 @@ export default function Header() {
 
 
     return (
-        <div style={{ border: '1px solid rgba(0,0,0,0.2)' }} className="w-full flex justify-between pt-5 pb-5 px-10 lg:px-24">
+        <div style={{ border: '1px solid rgba(0,0,0,0.2)' }} className="w-full flex justify-between pt-5 pb-5 px-5 lg:px-24">
 
             <div className="my-auto">
                 <h1 className="text-xl font-bold">Paper Trail</h1>

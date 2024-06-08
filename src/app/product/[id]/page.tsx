@@ -6,6 +6,7 @@ import LocalShippingOutlinedIcon from '@mui/icons-material/LocalShippingOutlined
 import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn';
 import ProductCard from "@/components/global/ProductCard";
 import { ProductInfo } from "@/components/product/ProductInfo";
+import ReviewSection from "@/components/product/ReviewSection";
 
 export default function ProductPage() {
 
@@ -19,8 +20,8 @@ export default function ProductPage() {
 
                     <div className="flex gap-3 w-full lg:w-[60vw]">
 
-                        <div className="flex flex-col gap-3">
-                            <Image style={{ border: '1px solid rgba(0,0,0,0.)' }} alt="" width={100} height={100} src={'https://www.promateworld.com/storage/mango/paper/bpfg0370-rathna-foolscap-square-a3-250-sheets-pack-150x150.png'} />
+                        <div className="lg:flex hidden flex-col gap-3">
+                            <Image style={{ border: '1px solid rgba(0,0,0,0.2)' }} alt="" width={100} height={100} src={'https://www.promateworld.com/storage/mango/paper/bpfg0370-rathna-foolscap-square-a3-250-sheets-pack-150x150.png'} />
                             <Image alt="" width={100} height={100} src={'https://www.promateworld.com/storage/mango/paper/bpfg0370-rathna-foolscap-square-a3-250-sheets-pack-150x150.png'} />
                             <Image alt="" width={100} height={100} src={'https://www.promateworld.com/storage/mango/paper/bpfg0370-rathna-foolscap-square-a3-250-sheets-pack-150x150.png'} />
                             <Image alt="" width={100} height={100} src={'https://www.promateworld.com/storage/mango/paper/bpfg0370-rathna-foolscap-square-a3-250-sheets-pack-150x150.png'} />
@@ -152,6 +153,8 @@ export default function ProductPage() {
                 <div className="flex lg:w-[55%] flex-col w-full justify-start items-start mt-16 mb-5">
                     <ProductInfo />
                 </div>
+
+                <ReviewSection />
 
                 <div className="flex flex-col w-full justify-start items-start mt-10">
 
