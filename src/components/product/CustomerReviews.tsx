@@ -1,48 +1,16 @@
-import {
-    Avatar,
-    AvatarFallback,
-    AvatarImage,
-} from "@/components/ui/avatar"
-import StarIcon from '@mui/icons-material/Star';
+import UserCommentItem from "./UserComment";
 
 
 export default function CustomerReviews() {
     return (
         <div className="flex w-full lg:w-[50%] flex-col">
 
-            <div className="flex flex-col w-full">
+            <div className="flex flex-col gap-3 w-full">
+                <UserCommentItem />
+                <UserCommentItem />
+                <UserCommentItem />
 
-                <div className="flex flex-row gap-2">
-                    <Avatar className=" w-16 h-16 ">
-                        <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
-                        <AvatarFallback>CN</AvatarFallback>
-                    </Avatar>
-
-                    <div className="flex flex-col flex-grow">
-
-                        <div className="flex flex-col w-full">
-
-                            <div className="flex w-full justify-between">
-                                <label className="text-md font-bold">Vincent Burgess</label>
-                            </div>
-                            <label className="text-xs text-slate-400">30 July 2022</label>
-
-                        </div>
-
-                        <div className="flex my-auto mt-5">
-                            <StarIcon className="text-sm text-[#FFAD33]" />
-                            <StarIcon className="text-sm text-[#FFAD33]" />
-                            <StarIcon className="text-sm text-[#FFAD33]" />
-                            <StarIcon className="text-sm text-[#FFAD33]" />
-                            <StarIcon className="text-sm text-[#FFAD33]" />
-                            <label className="my-auto  ml-2 font-bold text-xs">Very good </label>
-                        </div>
-
-                        <p className="mt-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda deserunt hic ullam repellat aliquid architecto enim veniam ab. Expedita inventore ipsum porro fugit iusto molestias dolor? Inventore sunt consequatur quae?</p>
-
-                    </div>
-
-                </div>
+                <button style={{ border: '1px solid rgba(0,0,0,0.2)' }} type='submit' className=" mt-5  rounded-md px-2 justify-center items-center text-black font-semibold text-sm p-2 ">Load more</button>
 
             </div>
 
