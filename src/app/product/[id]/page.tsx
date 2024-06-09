@@ -7,6 +7,7 @@ import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn';
 import ProductCard from "@/components/global/ProductCard";
 import { ProductInfo } from "@/components/product/ProductInfo";
 import ReviewSection from "@/components/product/ReviewSection";
+import CustomerReviews from "@/components/product/CustomerReviews";
 
 export default function ProductPage() {
 
@@ -155,6 +156,8 @@ export default function ProductPage() {
                 </div>
 
                 <ReviewSection />
+
+                <CustomerReviews />
 
                 <div className="flex flex-col w-full justify-start items-start mt-10">
 

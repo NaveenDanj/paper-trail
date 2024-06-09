@@ -41,8 +41,8 @@ export default function Header() {
                 </div>
 
                 <div className="flex my-auto gap-5 ">
-                    <FavoriteBorderIcon className="cursor-pointer my-auto" />
-                    <ShoppingCartOutlinedIcon className="cursor-pointer my-auto" />
+                    <Link href='/wishlist'><FavoriteBorderIcon className="cursor-pointer my-auto" /></Link>
+                    <Link href='/cart'><ShoppingCartOutlinedIcon className="cursor-pointer my-auto" /></Link>
                     {user && <Link href={'/account'}><AccountCircleOutlinedIcon className='cursor-pointer my-auto' /></Link>}
                     <MenuDrawer />
                 </div>

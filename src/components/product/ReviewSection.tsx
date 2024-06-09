@@ -4,7 +4,7 @@ import { Progress } from "@/components/ui/progress"
 
 export default function ReviewSection() {
     return (
-        <div style={{ borderTop: '1px solid rgba(0,0,0,0.2)' }} className="flex gap-5 py-10 lg:flex-row flex-col w-full justify-start items-start mt-5 mb-5">
+        <div style={{ borderTop: '1px solid rgba(0,0,0,0.2)' }} className="flex gap-5 pt-10 pb-5 lg:flex-row flex-col w-full justify-start items-start mt-5 mb-5">
 
             <div className="flex flex-col w-full">
 
@@ -72,7 +72,7 @@ export default function ReviewSection() {
                             </div>
 
                             <div>
-                                <label className='text-lg my-auto'>25</label>
+                                <label className='text-lg my-auto'>18</label>
                             </div>
 
                         </div>
@@ -89,7 +89,7 @@ export default function ReviewSection() {
                             </div>
 
                             <div>
-                                <label className='text-lg my-auto'>25</label>
+                                <label className='text-lg my-auto'>11</label>
                             </div>
 
                         </div>
@@ -106,7 +106,7 @@ export default function ReviewSection() {
                             </div>
 
                             <div>
-                                <label className='text-lg my-auto'>25</label>
+                                <label className='text-lg my-auto'>0</label>
                             </div>
 
                         </div>
@@ -123,7 +123,7 @@ export default function ReviewSection() {
                             </div>
 
                             <div>
-                                <label className='text-lg my-auto'>25</label>
+                                <label className='text-lg my-auto'>0</label>
                             </div>
 
                         </div>
