@@ -13,7 +13,7 @@ export type User = {
 
 
 export type Product = {
-    uid:string;
+    uid?:string;
     name:string;
     description:string;
     price:number;
