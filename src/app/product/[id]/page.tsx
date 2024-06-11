@@ -8,8 +8,11 @@ import ProductCard from "@/components/global/ProductCard";
 import { ProductInfo } from "@/components/product/ProductInfo";
 import ReviewSection from "@/components/product/ReviewSection";
 import CustomerReviews from "@/components/product/CustomerReviews";
+import { GetRelatedProducts } from "@/actions/ProductAction";
 
-export default function ProductPage() {
+export default async function ProductPage() {
+
+    const products = await GetRelatedProducts();
 
     return (
         <div className="w-full flex flex-col">
@@ -171,10 +174,9 @@ export default function ProductPage() {
                 </div>
 
                 <div className=" mt-8 w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 gap-x-3">
-                    <ProductCard />
-                    <ProductCard />
-                    <ProductCard />
-                    <ProductCard />
+                    {products.map((product, index) => (
+                        <ProductCard key={index} product={product} />
+                    ))}
                 </div>
 
 

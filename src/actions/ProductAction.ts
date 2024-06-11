@@ -2,7 +2,6 @@
 
 import admin from "@/firebase/admin"
 import { Product } from "@/types/types";
-import { randomInt } from "crypto";
 
 export async function GetFlashSales (){
     // get the first 10 lowest quantity item 
@@ -18,5 +17,11 @@ export async function GetBestSellingProducts(){
 
 export async function GetRandomProductList(){
     const products = (await admin.firestore().collection('products').limit(30).get())
+    return products.docs.map(product => (product.data() as Product));
+}
+
+
+export async function GetRelatedProducts(){
+    const products = (await admin.firestore().collection('products').limit(10).get())
     return products.docs.map(product => (product.data() as Product));
 }

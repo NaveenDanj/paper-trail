@@ -16,7 +16,7 @@ export default function ProductCard({ product }: IProp) {
     }
 
     return (
-        <div className="group flex flex-col max-w-[320px] px-3 pt-3">
+        <div className="group flex flex-col flex-grow max-w-[320px] px-3 pt-3">
 
             <div className=" bg-[#F5F5F5] gap-3 w-full flex flex-col justify-center items-center py-3 rounded-lg">
 
@@ -46,6 +46,9 @@ export default function ProductCard({ product }: IProp) {
                 <label className="text-md font-semibold">{product.name}</label>
                 <label className="text-sm font-semibold text-[#EF4444]">LKR {product.price} <span className="ml-2 line-through text-slate-800">$160</span> </label>
             </div>
+
+
+            <div className="flex flex-col flex-grow"></div>
 
             <div className="mt-3 flex">
                 <StarIcon className="text-md text-[#FFAD33]" />
