@@ -7,9 +7,13 @@ import {
     CarouselPrevious,
 } from "@/components/ui/carousel"
 import ProductCard from "../global/ProductCard"
+import { GetFlashSales } from "@/actions/ProductAction"
 
 
-export default function FlashSales() {
+export default async function FlashSales() {
+
+    const products = await GetFlashSales();
+
     return (
         <div className="w-full flex flex-col justify-start items-start px-10 lg:px-24 mt-16">
 
@@ -31,9 +35,9 @@ export default function FlashSales() {
                     className="w-full "
                 >
                     <CarouselContent>
-                        {Array.from({ length: 5 }).map((_, index) => (
+                        {products.map((product, index) => (
                             <CarouselItem key={index} className=" sm:basis-1/2 lg:basis-1/3">
-                                <ProductCard />
+                                <ProductCard product={product} />
                             </CarouselItem>
                         ))}
                     </CarouselContent>

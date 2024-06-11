@@ -1,7 +1,11 @@
+import { GetRandomProductList } from "@/actions/ProductAction"
 import ProductCard from "../global/ProductCard"
 
 
-export default function OurProduct() {
+export default async function OurProduct() {
+
+    const products = await GetRandomProductList()
+
     return (
         <div className="pb-10 w-full flex flex-col justify-start items-start px-10 lg:px-24 mt-16">
             <div className="">
@@ -15,14 +19,9 @@ export default function OurProduct() {
             </div>
 
             <div className="mt-8 w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 gap-x-3">
-                <ProductCard />
-                <ProductCard />
-                <ProductCard />
-                <ProductCard />
-                <ProductCard />
-                <ProductCard />
-                <ProductCard />
-                <ProductCard />
+                {products.map((product, index) => (
+                    <ProductCard key={index} product={product} />
+                ))}
             </div>
 
             <div style={{ borderBottom: '1px solid rgba(0,0,0,0.2)' }} className="mt-16 pb-10 w-full flex justify-center">

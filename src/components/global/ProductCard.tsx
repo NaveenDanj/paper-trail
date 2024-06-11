@@ -1,9 +1,20 @@
 import Image from "next/image";
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import StarIcon from '@mui/icons-material/Star';
+import { Product } from "@/types/types";
 
 
-export default function ProductCard() {
+type IProp = {
+    product: Product
+}
+
+
+export default function ProductCard({ product }: IProp) {
+
+    if (!product) {
+        return (<label>Loading...</label>)
+    }
+
     return (
         <div className="group flex flex-col max-w-[320px] px-3 pt-3">
 
@@ -26,14 +37,14 @@ export default function ProductCard() {
                 </div>
 
                 <div>
-                    <Image className="bg-cover items-center" height={200} width={150} alt="" src={'https://www.promateworld.com/storage/mango/paper/bpfg0370-rathna-foolscap-square-a3-250-sheets-pack-150x150.png'} />
+                    <Image className="bg-cover items-center" height={200} width={150} alt="" src={'https:' + product.images[0] + ''} />
                 </div>
 
             </div>
 
             <div className="mt-3 flex flex-col gap-3">
-                <label className="text-md font-semibold">HAVIT HV-G92 Gamepad</label>
-                <label className="text-sm font-semibold text-[#EF4444]">$120 <span className="ml-2 line-through text-slate-800">$160</span> </label>
+                <label className="text-md font-semibold">{product.name}</label>
+                <label className="text-sm font-semibold text-[#EF4444]">LKR {product.price} <span className="ml-2 line-through text-slate-800">$160</span> </label>
             </div>
 
             <div className="mt-3 flex">

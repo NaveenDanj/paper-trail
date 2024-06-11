@@ -1,7 +1,7 @@
 'use server'
 import { Product } from '@/types/types';
 import admin from '../firebase/admin'
-import products from './list.json'
+import products from './list2.json'
 import { randomUUID } from 'crypto';
 
 export async function InsertProductRecord() {

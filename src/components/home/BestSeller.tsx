@@ -6,9 +6,13 @@ import {
     CarouselPrevious,
 } from "@/components/ui/carousel"
 import ProductCard from "../global/ProductCard"
+import { GetBestSellingProducts } from "@/actions/ProductAction"
 
 
-export default function BestSeller() {
+export default async function BestSeller() {
+
+    const products = await GetBestSellingProducts()
+
     return (
         <div className="w-full flex flex-col justify-start items-start px-10 lg:px-24 mt-16">
 
@@ -31,9 +35,9 @@ export default function BestSeller() {
                     className="w-full "
                 >
                     <CarouselContent>
-                        {Array.from({ length: 5 }).map((_, index) => (
+                        {products.map((product, index) => (
                             <CarouselItem key={index} className=" sm:basis-1/2 lg:basis-1/3">
-                                <ProductCard />
+                                <ProductCard product={product} />
                             </CarouselItem>
                         ))}
                     </CarouselContent>
