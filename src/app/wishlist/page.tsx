@@ -1,7 +1,12 @@
+import GetProducts from "@/actions/ProductAction";
 import ProductCard from "@/components/global/ProductCard";
 import Footer from "@/components/home/Footer";
 
-export default function Wishlist() {
+export default async function Wishlist() {
+
+    const wishlist = await GetProducts(5)
+    const products = await GetProducts(10)
+
     return (
         <div className="w-full flex flex-col">
 
@@ -13,10 +18,9 @@ export default function Wishlist() {
                 </div>
 
                 <div className="mt-8 w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 gap-x-3">
-                    <ProductCard />
-                    <ProductCard />
-                    <ProductCard />
-                    <ProductCard />
+                    {wishlist.map((product, index) => (
+                        <ProductCard key={index} product={product} />
+                    ))}
                 </div>
 
                 <div className="flex flex-col w-full justify-start items-start mt-24">
@@ -33,10 +37,9 @@ export default function Wishlist() {
                 </div>
 
                 <div className="mt-8 w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 gap-x-3">
-                    <ProductCard />
-                    <ProductCard />
-                    <ProductCard />
-                    <ProductCard />
+                    {products.map((product, index) => (
+                        <ProductCard key={index} product={product} />
+                    ))}
                 </div>
 
 

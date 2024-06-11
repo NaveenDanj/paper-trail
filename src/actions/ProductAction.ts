@@ -25,3 +25,8 @@ export async function GetRelatedProducts(){
     const products = (await admin.firestore().collection('products').limit(10).get())
     return products.docs.map(product => (product.data() as Product));
 }
+
+export default async function GetProducts(limit:number){
+    const products = (await admin.firestore().collection('products').limit(limit).get())
+    return products.docs.map(product => (product.data() as Product));
+}
