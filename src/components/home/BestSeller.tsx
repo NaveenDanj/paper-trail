@@ -36,7 +36,7 @@ export default async function BestSeller() {
                 >
                     <CarouselContent>
                         {products.map((product, index) => (
-                            <CarouselItem key={index} className=" sm:basis-1/2 lg:basis-1/3">
+                            <CarouselItem key={index} className="grid sm:basis-1/2 lg:basis-1/3">
                                 <ProductCard product={product} />
                             </CarouselItem>
                         ))}
