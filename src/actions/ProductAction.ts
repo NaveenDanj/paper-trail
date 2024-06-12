@@ -26,7 +26,11 @@ export async function GetRelatedProducts(){
     return products.docs.map(product => (product.data() as Product));
 }
 
-export default async function GetProducts(limit:number){
+export async function GetProducts(limit:number){
     const products = (await admin.firestore().collection('products').limit(limit).get())
     return products.docs.map(product => (product.data() as Product));
+}
+
+export async function GetProductInfo(id:string){
+    return (await admin.firestore().collection('products').doc(id).get()).data() as Product
 }

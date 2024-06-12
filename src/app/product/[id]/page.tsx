@@ -1,3 +1,5 @@
+'use client'
+
 import Footer from "@/components/home/Footer";
 import Image from "next/image";
 import StarIcon from '@mui/icons-material/Star';
@@ -8,31 +10,65 @@ import ProductCard from "@/components/global/ProductCard";
 import { ProductInfo } from "@/components/product/ProductInfo";
 import ReviewSection from "@/components/product/ReviewSection";
 import CustomerReviews from "@/components/product/CustomerReviews";
-import { GetRelatedProducts } from "@/actions/ProductAction";
+import { GetProductInfo, GetRelatedProducts } from "@/actions/ProductAction";
+import { useEffect, useState } from "react";
+import { Product } from "@/types/types";
+import { useParams } from 'next/navigation'
+import { LoadingInlineComponent } from "@/components/global/LoadingScreen";
 
-export default async function ProductPage() {
 
-    const products = await GetRelatedProducts();
+export default function ProductPage() {
+    const params = useParams<{ id: string; }>()
+
+    const [products, setProduct] = useState<Product[]>([]);
+    const [currentProduct, setCurrentProduct] = useState<Product>()
+    const [currentImage, setCurrentImage] = useState<string>()
+
+    const fetchData = async () => {
+        const products = await GetRelatedProducts();
+        setProduct(products)
+        const cp = await GetProductInfo(params.id)
+        setCurrentProduct(cp)
+        setCurrentImage(cp.images[0])
+        console.log(cp)
+    }
+
+    const handleSelectCurrentImage = async (index: number) => {
+        setCurrentImage(currentProduct?.images[index])
+    }
+
+
+    useEffect(() => {
+        fetchData();
+    }, [])
+
+    if (!currentProduct) {
+        return (
+            <div className="w-full flex h-full justify-center items-center">
+                <LoadingInlineComponent />
+            </div>
+        )
+    }
 
     return (
         <div className="w-full flex flex-col">
 
             <div className="flex flex-col px-3 lg:px-24 mt-10 pb-10 ">
 
-
                 <div className="flex flex-col  lg:flex-row  w-full gap-5">
 
                     <div className="flex gap-3 w-full lg:w-[60vw]">
 
                         <div className="lg:flex hidden flex-col gap-3">
-                            <Image style={{ border: '1px solid rgba(0,0,0,0.2)' }} alt="" width={100} height={100} src={'https://www.promateworld.com/storage/mango/paper/bpfg0370-rathna-foolscap-square-a3-250-sheets-pack-150x150.png'} />
-                            <Image alt="" width={100} height={100} src={'https://www.promateworld.com/storage/mango/paper/bpfg0370-rathna-foolscap-square-a3-250-sheets-pack-150x150.png'} />
-                            <Image alt="" width={100} height={100} src={'https://www.promateworld.com/storage/mango/paper/bpfg0370-rathna-foolscap-square-a3-250-sheets-pack-150x150.png'} />
-                            <Image alt="" width={100} height={100} src={'https://www.promateworld.com/storage/mango/paper/bpfg0370-rathna-foolscap-square-a3-250-sheets-pack-150x150.png'} />
+
+                            {currentProduct.images.map((image: string, index: number) => (
+                                <Image style={{ border: image == currentImage ? '1px solid rgba(0,0,0,0.2)' : '' }} className=" cursor-pointer" onClick={() => handleSelectCurrentImage(index)} key={index} alt="" width={100} height={100} src={'https:' + image} />
+                            ))}
+
                         </div>
 
                         <div className="w-full flex justify-center">
-                            <Image className="bg-cover w-[90%] bg-center object-cover" alt="" width={400} height={500} src={'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fnexttechmag.com%2Fwp-content%2Fuploads%2F2021%2F03%2FuFicTu3Ti56psJpsTGQ64C.jpg&f=1&nofb=1&ipt=50ddc1c031394dcb2bf539881583826aae3cec6fd57358099dae3f05d17e92dc&ipo=images'} />
+                            <Image className="bg-cover w-[90%] bg-center object-cover" alt="" width={400} height={500} src={'https://' + currentImage} />
                         </div>
 
                     </div>
@@ -41,7 +77,7 @@ export default async function ProductPage() {
 
                         <div className="mt-3 flex flex-col gap-3">
                             <div>
-                                <label className="text-2xl font-semibold">HAVIT HV-G92 Gamepad</label>
+                                <label className="text-2xl font-semibold">{currentProduct?.name}</label>
                                 <div className="flex my-auto mt-3">
                                     <StarIcon className="text-sm text-[#FFAD33]" />
                                     <StarIcon className="text-sm text-[#FFAD33]" />
@@ -50,10 +86,10 @@ export default async function ProductPage() {
                                     <StarIcon className="text-sm text-[#FFAD33]" />
                                     <label className="my-auto text-sm ml-2 font-medium text-[#808080]">(150 Reviews) | <span className="text-[#00FF66]">In Stock</span> </label>
                                 </div>
-                                <label className="text-2xl font-semibold">$160.00</label>
+                                <label className="text-2xl font-semibold">LKR {currentProduct.price}</label>
 
                                 <div className="mt-4 text-sm font-semibold">
-                                    <p>PlayStation 5 Controller Skin High quality vinyl with air channel adhesive for easy bubble free install & mess free removal Pressure sensitive.</p>
+                                    <p>{currentProduct.description}</p>
                                 </div>
 
                                 <div className="my-5" style={{ borderTop: '1px solid rgba(0,0,0,0.4)' }}></div>
@@ -178,7 +214,6 @@ export default async function ProductPage() {
                         <ProductCard key={index} product={product} />
                     ))}
                 </div>
-
 
             </div>
             <Footer />

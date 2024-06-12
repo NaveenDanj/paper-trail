@@ -1,6 +1,7 @@
-import GetProducts from "@/actions/ProductAction";
+import { GetProducts } from "@/actions/ProductAction";
 import ProductCard from "@/components/global/ProductCard";
 import Footer from "@/components/home/Footer";
+import { Product } from "@/types/types";
 
 export default async function Wishlist() {
 
@@ -18,7 +19,7 @@ export default async function Wishlist() {
                 </div>
 
                 <div className="mt-8 w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 gap-x-3">
-                    {wishlist.map((product, index) => (
+                    {wishlist.map((product: Product, index: number) => (
                         <ProductCard key={index} product={product} />
                     ))}
                 </div>
@@ -37,7 +38,7 @@ export default async function Wishlist() {
                 </div>
 
                 <div className="mt-8 w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 gap-x-3">
-                    {products.map((product, index) => (
+                    {products.map((product: Product, index: number) => (
                         <ProductCard key={index} product={product} />
                     ))}
                 </div>

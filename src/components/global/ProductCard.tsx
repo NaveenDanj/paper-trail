@@ -1,7 +1,10 @@
+'use client'
+
 import Image from "next/image";
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import StarIcon from '@mui/icons-material/Star';
 import { Product } from "@/types/types";
+import { useRouter } from "next/navigation";
 
 
 type IProp = {
@@ -11,12 +14,18 @@ type IProp = {
 
 export default function ProductCard({ product }: IProp) {
 
+    const router = useRouter()
+
     if (!product) {
         return (<label>Loading...</label>)
     }
 
+    const handleNavigate = () => {
+        router.push('/product/' + product.uid)
+    }
+
     return (
-        <div className="group flex flex-col flex-grow max-w-[320px] px-3 pt-3">
+        <div onClick={handleNavigate} className="cursor-pointer group flex flex-col flex-grow max-w-[320px] px-3 pt-3">
 
             <div className=" bg-[#F5F5F5] gap-3 w-full flex flex-col justify-center items-center py-3 rounded-lg">
 
