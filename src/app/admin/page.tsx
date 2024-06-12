@@ -1,10 +1,10 @@
 "use client"
 
-import { InsertProductRecord } from "@/actions/AdminScripts"
+// import { InsertProductRecord } from "@/actions/AdminScripts"
 
 export default function AdminIndex() {
 
-    const res = InsertProductRecord()
+    // const res = InsertProductRecord()
 
     return (
         <div>
