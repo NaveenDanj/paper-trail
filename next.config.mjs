@@ -10,6 +10,14 @@ const nextConfig = {
         protocol: "https",
         hostname: "*",
       },
+      {
+        protocol: "http",
+        hostname: "*",
+      },
+      {
+        protocol: "http",
+        hostname: "ae01.alicdn.com",
+      },
     ],
   },
 };

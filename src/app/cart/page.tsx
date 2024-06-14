@@ -1,8 +1,26 @@
+'use client'
+
+import CartPageItem from "@/components/cart/CartItem";
 import Footer from "@/components/home/Footer";
-import Image from "next/image";
+import useCurrentCart from "@/hooks/cart";
+import { CartItem } from "@/types/types";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 export default function Cart() {
+
+    const { cartData, setCartData, total, calculateTotal } = useCurrentCart();
+
+    useEffect(() => {
+        calculateTotal();
+    }, [])
+
+    const clearCart = () => {
+        setCartData([])
+        localStorage.setItem('cart', JSON.stringify([]))
+    }
+
+
     return (
         <div className="w-full flex flex-col">
 
@@ -27,114 +45,16 @@ export default function Cart() {
                     </div>
 
                     <div className="flex w-full flex-col gap-5">
-
-                        <div className=" p-3 w-full flex-col gap-5 grid grid-cols-4 lg:grid lg:grid-cols-6 mt-7 shadow-lg">
-
-                            <div className="flex col-span-2 my-auto">
-                                <Image alt="" width={50} height={50} src={'https://www.promateworld.com/storage/mango/paper/bpfg0370-rathna-foolscap-square-a3-250-sheets-pack-150x150.png'} />
-
-                                <div className="my-auto flex flex-col">
-                                    <label className="text-sm font-semibold">HAVIT HV-G92 Gamepad</label>
-                                    <label className="text-sm font-bold lg:hidden">$650</label>
-                                </div>
-                            </div>
-
-                            <div className=" text-left my-auto hidden lg:flex">
-                                <label className="text-sm font-semibold">$650</label>
-                            </div>
-
-                            <div className="justify-start w-full my-auto">
-                                <input type="number" className="max-w-[80px] rounded-md pl-2" style={{ border: '1px solid rgba(0,0,0,0.2)' }} />
-                            </div>
-
-                            <div className=" text-right my-auto">
-                                <label className="text-sm font-semibold">$650</label>
-                            </div>
-
-                        </div>
-
-                        <div className=" p-3 w-full flex-col gap-5 grid grid-cols-4 lg:grid lg:grid-cols-6 mt-7 shadow-lg">
-
-                            <div className="flex col-span-2 my-auto">
-                                <Image alt="" width={50} height={50} src={'https://www.promateworld.com/storage/mango/paper/bpfg0370-rathna-foolscap-square-a3-250-sheets-pack-150x150.png'} />
-
-                                <div className="my-auto flex flex-col">
-                                    <label className="text-sm font-semibold">HAVIT HV-G92 Gamepad</label>
-                                    <label className="text-sm font-bold lg:hidden">$650</label>
-                                </div>
-                            </div>
-
-                            <div className=" text-left my-auto hidden lg:flex">
-                                <label className="text-sm font-semibold">$650</label>
-                            </div>
-
-                            <div className="justify-start w-full my-auto">
-                                <input type="number" className="max-w-[80px] rounded-md pl-2" style={{ border: '1px solid rgba(0,0,0,0.2)' }} />
-                            </div>
-
-                            <div className=" text-right my-auto">
-                                <label className="text-sm font-semibold">$650</label>
-                            </div>
-
-                        </div>
-
-                        <div className=" p-3 w-full flex-col gap-5 grid grid-cols-4 lg:grid lg:grid-cols-6 mt-7 shadow-lg">
-
-                            <div className="flex col-span-2 my-auto">
-                                <Image alt="" width={50} height={50} src={'https://www.promateworld.com/storage/mango/paper/bpfg0370-rathna-foolscap-square-a3-250-sheets-pack-150x150.png'} />
-
-                                <div className="my-auto flex flex-col">
-                                    <label className="text-sm font-semibold">HAVIT HV-G92 Gamepad</label>
-                                    <label className="text-sm font-bold lg:hidden">$650</label>
-                                </div>
-                            </div>
-
-                            <div className=" text-left my-auto hidden lg:flex">
-                                <label className="text-sm font-semibold">$650</label>
-                            </div>
-
-                            <div className="justify-start w-full my-auto">
-                                <input type="number" className="max-w-[80px] rounded-md pl-2" style={{ border: '1px solid rgba(0,0,0,0.2)' }} />
-                            </div>
-
-                            <div className=" text-right my-auto">
-                                <label className="text-sm font-semibold">$650</label>
-                            </div>
-
-                        </div>
-
-                        <div className=" p-3 w-full flex-col gap-5 grid grid-cols-4 lg:grid lg:grid-cols-6 mt-7 shadow-lg">
-
-                            <div className="flex col-span-2 my-auto">
-                                <Image alt="" width={50} height={50} src={'https://www.promateworld.com/storage/mango/paper/bpfg0370-rathna-foolscap-square-a3-250-sheets-pack-150x150.png'} />
-
-                                <div className="my-auto flex flex-col">
-                                    <label className="text-sm font-semibold">HAVIT HV-G92 Gamepad</label>
-                                    <label className="text-sm font-bold lg:hidden">$650</label>
-                                </div>
-                            </div>
-
-                            <div className=" text-left my-auto hidden lg:flex">
-                                <label className="text-sm font-semibold">$650</label>
-                            </div>
-
-                            <div className="justify-start w-full my-auto">
-                                <input type="number" className="max-w-[80px] rounded-md pl-2" style={{ border: '1px solid rgba(0,0,0,0.2)' }} />
-                            </div>
-
-                            <div className=" text-right my-auto">
-                                <label className="text-sm font-semibold">$650</label>
-                            </div>
-
-                        </div>
-
+                        {cartData.map((item: CartItem, index: number) => (
+                            <CartPageItem cartItem={item} key={index} />
+                        ))}
                     </div>
 
                 </div>
 
                 <div className="flex w-full justify-between mt-10">
                     <button style={{ border: '1px solid rgba(0,0,0,0.2)' }} className="my-auto rounded-md px-5 justify-center items-center text-black text-sm p-2 font-semibold">Return To Shop</button>
-                    <button style={{ border: '1px solid rgba(0,0,0,0.2)' }} className="my-auto rounded-md px-5 justify-center items-center text-black text-sm p-2 font-semibold">Clear Cart</button>
+                    <button onClick={clearCart} style={{ border: '1px solid rgba(0,0,0,0.2)' }} className="my-auto rounded-md px-5 justify-center items-center text-black text-sm p-2 font-semibold">Clear Cart</button>
                 </div>
 
                 <div className="flex flex-col lg:flex-row w-full mt-10 gap-5">
@@ -161,7 +81,7 @@ export default function Cart() {
 
                                 <div style={{ borderBottom: '1px solid rgba(0,0,0,0.2)' }} className="flex justify-between w-full pb-3">
                                     <label className=" font-medium text-sm">Subtotal:</label>
-                                    <label className=" font-medium text-sm">$1750</label>
+                                    <label className=" font-medium text-sm">LKR {total}</label>
                                 </div>
 
                                 <div style={{ borderBottom: '1px solid rgba(0,0,0,0.2)' }} className="flex justify-between w-full pb-3">

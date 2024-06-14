@@ -3,7 +3,7 @@
 import Image from "next/image";
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import StarIcon from '@mui/icons-material/Star';
-import { Product } from "@/types/types";
+import { CartItem, Product } from "@/types/types";
 import { useRouter } from "next/navigation";
 
 
@@ -22,6 +22,55 @@ export default function ProductCard({ product }: IProp) {
 
     const handleNavigate = () => {
         router.push('/product/' + product.uid)
+    }
+
+
+    const handleAddtoCart = () => {
+
+        const cartDataStr = localStorage.getItem('cart');
+
+        if (!cartDataStr) {
+            const cartData: CartItem[] = []
+
+            cartData.push({
+                productData: product,
+                quantity: 1,
+                total: product.price
+            })
+
+            localStorage.setItem('cart', JSON.stringify(cartData))
+
+            return;
+
+        } else {
+
+            const cartData = JSON.parse(cartDataStr) as CartItem[]
+            let checkFlag = false;
+
+            for (let i = 0; i < cartData.length; i++) {
+
+                if (cartData[i].productData.uid === product.uid) {
+                    cartData[i].quantity += 1;
+                    cartData[i].total = cartData[i].quantity * cartData[i].productData.price;
+                    checkFlag = true;
+                    break;
+                }
+
+            }
+
+            if (!checkFlag) {
+                cartData.push({
+                    productData: product,
+                    quantity: 1,
+                    total: product.price
+                })
+            }
+
+            localStorage.setItem('cart', JSON.stringify(cartData))
+
+            return;
+        }
+
     }
 
     return (
@@ -69,7 +118,7 @@ export default function ProductCard({ product }: IProp) {
             </div>
 
             <div className="w-full mt-6">
-                <button className="bg-black rounded-md w-full justify-center items-center text-white text-sm p-2">Add To Cart</button>
+                <button onClick={handleAddtoCart} className="bg-black rounded-md w-full justify-center items-center text-white text-sm p-2">Add To Cart</button>
             </div>
 
         </div>
