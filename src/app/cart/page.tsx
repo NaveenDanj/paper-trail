@@ -1,6 +1,7 @@
 'use client'
 
 import CartPageItem from "@/components/cart/CartItem";
+import CartTotalComponent from "@/components/cart/CartTotalComponent";
 import Footer from "@/components/home/Footer";
 import useCurrentCart from "@/hooks/cart";
 import { CartItem } from "@/types/types";
@@ -9,15 +10,22 @@ import { useEffect, useState } from "react";
 
 export default function Cart() {
 
-    const { cartData, setCartData, total, calculateTotal } = useCurrentCart();
+    const { cartData, setCartData, calculateTotal } = useCurrentCart();
+    const [cartMainData, setCartMainData] = useState<CartItem[]>(cartData);
+    const [changed, setChanged] = useState<number>(0);
+
+    useEffect(() => {
+        setCartMainData(cartData);
+    }, [cartData]);
 
     useEffect(() => {
         calculateTotal();
-    }, [])
+    }, [cartMainData]);
 
     const clearCart = () => {
         setCartData([])
         localStorage.setItem('cart', JSON.stringify([]))
+        setChanged(-Math.random() * 100000)
     }
 
 
@@ -45,8 +53,8 @@ export default function Cart() {
                     </div>
 
                     <div className="flex w-full flex-col gap-5">
-                        {cartData.map((item: CartItem, index: number) => (
-                            <CartPageItem cartItem={item} key={index} />
+                        {cartMainData.map((item: CartItem, index: number) => (
+                            <CartPageItem setChanged={setChanged} cartMainData={cartMainData} setCartMainData={setCartMainData} cartItem={item} key={index} />
                         ))}
                     </div>
 
@@ -72,40 +80,7 @@ export default function Cart() {
                     </div>
 
                     <div className="w-full flex justify-start md:justify-center lg:justify-end lg:mt-0 mt-5">
-
-                        <div style={{ border: '1px solid rgba(0,0,0,0.2)' }} className="flex flex-col p-3 w-full max-w-[500px]">
-
-                            <h1 className=" font-semibold">Cart Total</h1>
-
-                            <div className="w-full flex flex-col gap-3 mt-5">
-
-                                <div style={{ borderBottom: '1px solid rgba(0,0,0,0.2)' }} className="flex justify-between w-full pb-3">
-                                    <label className=" font-medium text-sm">Subtotal:</label>
-                                    <label className=" font-medium text-sm">LKR {total}</label>
-                                </div>
-
-                                <div style={{ borderBottom: '1px solid rgba(0,0,0,0.2)' }} className="flex justify-between w-full pb-3">
-                                    <label className=" font-medium text-sm">Subtotal:</label>
-                                    <label className=" font-medium text-sm">$1750</label>
-                                </div>
-
-                                <div className="flex justify-between w-full pb-3">
-                                    <label className=" font-medium text-sm">Subtotal:</label>
-                                    <label className=" font-medium text-sm">$1750</label>
-                                </div>
-
-                            </div>
-
-                            <div className="mt-5 flex justify-center">
-                                <Link href={'/checkout'}>
-                                    <button className="bg-[#DB4444] rounded-md px-2 justify-center items-center text-white text-sm p-2 ">Proceed to checkout</button>
-                                </Link>
-                            </div>
-
-
-                        </div>
-
-
+                        <CartTotalComponent changed={changed} />
                     </div>
 
                 </div>

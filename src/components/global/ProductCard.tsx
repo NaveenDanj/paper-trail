@@ -5,6 +5,9 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import StarIcon from '@mui/icons-material/Star';
 import { CartItem, Product } from "@/types/types";
 import { useRouter } from "next/navigation";
+import useCurrentCart from "@/hooks/cart";
+import { useToast } from "@/components/ui/use-toast"
+
 
 
 type IProp = {
@@ -13,6 +16,7 @@ type IProp = {
 
 
 export default function ProductCard({ product }: IProp) {
+    const { toast } = useToast()
 
     const router = useRouter()
 
@@ -29,6 +33,11 @@ export default function ProductCard({ product }: IProp) {
 
         const cartDataStr = localStorage.getItem('cart');
 
+        const toastData = {
+            title: "New Item Added to the cart",
+            description: `Added to cart: ${product.name.length > 30 ? product.name.substring(0, 30) + '...' : product.name} - Quantity: 1 - Price: LKR ${product.price.toFixed(2)}`,
+        }
+
         if (!cartDataStr) {
             const cartData: CartItem[] = []
 
@@ -39,6 +48,8 @@ export default function ProductCard({ product }: IProp) {
             })
 
             localStorage.setItem('cart', JSON.stringify(cartData))
+
+            toast(toastData)
 
             return;
 
@@ -64,9 +75,14 @@ export default function ProductCard({ product }: IProp) {
                     quantity: 1,
                     total: product.price
                 })
+
+                toast(toastData)
+
             }
 
             localStorage.setItem('cart', JSON.stringify(cartData))
+
+            toast(toastData)
 
             return;
         }
@@ -74,9 +90,9 @@ export default function ProductCard({ product }: IProp) {
     }
 
     return (
-        <div onClick={handleNavigate} className="cursor-pointer group flex flex-col flex-grow max-w-[320px] px-3 pt-3">
+        <div className="cursor-pointer group flex flex-col flex-grow max-w-[320px] px-3 pt-3">
 
-            <div className=" bg-[#F5F5F5] gap-3 w-full flex flex-col justify-center items-center py-3 rounded-lg">
+            <div onClick={handleNavigate} className=" bg-[#F5F5F5] gap-3 w-full flex flex-col justify-center items-center py-3 rounded-lg">
 
                 <div className="w-full flex justify-between pl-2 pr-3">
 
@@ -100,7 +116,7 @@ export default function ProductCard({ product }: IProp) {
 
             </div>
 
-            <div className="mt-3 flex flex-col gap-3">
+            <div onClick={handleNavigate} className="mt-3 flex flex-col gap-3">
                 <label className="text-md font-semibold">{product.name}</label>
                 <label className="text-sm font-semibold text-[#EF4444]">LKR {product.price} <span className="ml-2 line-through text-slate-800">$160</span> </label>
             </div>
