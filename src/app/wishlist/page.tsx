@@ -1,12 +1,31 @@
+'use client'
+
 import { GetProducts } from "@/actions/ProductAction";
 import ProductCard from "@/components/global/ProductCard";
 import Footer from "@/components/home/Footer";
 import { Product } from "@/types/types";
+import { useEffect, useState } from "react";
 
-export default async function Wishlist() {
+export default function Wishlist() {
 
-    const wishlist = await GetProducts(5)
-    const products = await GetProducts(10)
+    const [wishlist, setWishlist] = useState<Product[]>([]);
+    const [products, setProduct] = useState<Product[]>([])
+
+
+    useEffect(() => {
+
+        const wishlistStr = localStorage.getItem('wishlist');
+
+        if (wishlistStr != null) {
+            setWishlist(JSON.parse(wishlistStr) as Product[])
+        }
+
+        fetchItems();
+    }, [])
+
+    const fetchItems = async () => {
+        setProduct(await GetProducts(10))
+    }
 
     return (
         <div className="w-full flex flex-col">
@@ -14,7 +33,7 @@ export default async function Wishlist() {
             <div className="flex flex-col  px-10 lg:px-24 mt-10 pb-10">
 
                 <div className="flex justify-between w-full">
-                    <label className="my-auto">Wishlist (4)</label>
+                    <label className="my-auto">Wishlist ({wishlist.length})</label>
                     <button style={{ border: '1px solid rgba(0,0,0,0.2)' }} className="my-auto rounded-md px-5 justify-center items-center text-black text-sm p-2 ">Move All To Bag</button>
                 </div>
 

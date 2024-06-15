@@ -7,7 +7,8 @@ import { CartItem, Product } from "@/types/types";
 import { useRouter } from "next/navigation";
 import useCurrentCart from "@/hooks/cart";
 import { useToast } from "@/components/ui/use-toast"
-
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import { useEffect, useState } from "react";
 
 
 type IProp = {
@@ -17,6 +18,19 @@ type IProp = {
 
 export default function ProductCard({ product }: IProp) {
     const { toast } = useToast()
+    const [isUserWishlisted, setIsUserWishlisted] = useState<boolean>(false)
+
+
+    useEffect(() => {
+
+        if (checkInWishList()) {
+            setIsUserWishlisted(true)
+        } else {
+            setIsUserWishlisted(false)
+        }
+
+    }, [])
+
 
     const router = useRouter()
 
@@ -89,10 +103,84 @@ export default function ProductCard({ product }: IProp) {
 
     }
 
+    const addToWishlist = () => {
+
+        const wishlistStr = localStorage.getItem('wishlist');
+
+        if (wishlistStr != null) {
+
+            const wishlist = JSON.parse(wishlistStr) as Product[]
+            let found = false;
+
+            for (let i = 0; i < wishlist.length; i++) {
+
+                if (wishlist[i].uid === product.uid) {
+                    found = true;
+                    break;
+                }
+
+            }
+
+            if (!found) {
+                wishlist.push(product)
+            }
+
+            localStorage.setItem('wishlist', JSON.stringify(wishlist))
+            setIsUserWishlisted(true)
+            return
+        }
+
+        const wishlist: Product[] = []
+        wishlist.push(product)
+        localStorage.setItem('wishlist', JSON.stringify(wishlist))
+        setIsUserWishlisted(true)
+    }
+
+    const removeFromWishlist = () => {
+        const wishlistStr = localStorage.getItem('wishlist');
+
+        if (wishlistStr != null) {
+            const wishlist = JSON.parse(wishlistStr) as Product[]
+
+            for (let i = 0; i < wishlist.length; i++) {
+                if (wishlist[i].uid === product.uid) {
+                    wishlist.splice(i, 1)
+                    break;
+                }
+            }
+
+            localStorage.setItem('wishlist', JSON.stringify(wishlist))
+            setIsUserWishlisted(false)
+        }
+
+    }
+
+    const checkInWishList = () => {
+        const wishlistStr = localStorage.getItem('wishlist');
+
+        if (wishlistStr) {
+
+            const wishlist = JSON.parse(wishlistStr) as Product[]
+
+            for (let i = 0; i < wishlist.length; i++) {
+
+                if (wishlist[i].uid === product.uid) {
+                    return true
+                }
+
+            }
+
+        }
+
+        return false
+
+    }
+
+
     return (
         <div className="cursor-pointer group flex flex-col flex-grow max-w-[320px] px-3 pt-3">
 
-            <div onClick={handleNavigate} className=" bg-[#F5F5F5] gap-3 w-full flex flex-col justify-center items-center py-3 rounded-lg">
+            <div className=" bg-[#F5F5F5] gap-3 w-full flex flex-col justify-center items-center py-3 rounded-lg">
 
                 <div className="w-full flex justify-between pl-2 pr-3">
 
@@ -102,8 +190,9 @@ export default function ProductCard({ product }: IProp) {
 
                     <div className="relative flex flex-col ">
 
-                        <button className=" hover:bg-[#FFFFFF] p-1 rounded-3xl flex justify-center items-center">
-                            <FavoriteBorderIcon />
+                        <button className=" hover:bg-[#FFFFFF]  p-1 rounded-3xl flex justify-center items-center">
+                            {/* {<FavoriteBorderIcon className="text-red-500" /> : } */}
+                            {!isUserWishlisted ? <FavoriteBorderIcon onClick={addToWishlist} /> : <FavoriteIcon onClick={removeFromWishlist} className="text-red-500" />}
                         </button>
 
                     </div>
