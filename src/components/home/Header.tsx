@@ -7,16 +7,20 @@ import Link from 'next/link';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import useCurrentUser from '@/hooks/currentUser';
 import { useEffect } from 'react';
+import useCurrentCurrency from '@/hooks/currentCurreny';
+
 
 export default function Header() {
 
     const { user, isLoading } = useCurrentUser();
-
+    const { rate, currentCurrency } = useCurrentCurrency();
 
     useEffect(() => {
         console.log("user is => ", user)
-
+        console.log('rate => ', rate)
+        console.log('current currency => ', currentCurrency)
     }, [user])
+
 
 
     return (
