@@ -12,7 +12,7 @@ export default function Checkout() {
 
                     <div className="flex flex-col w-full">
 
-                        <h1 className="text-3xl font-semibold">Billing Details</h1>
+                        <label className="text-3xl font-semibold">Billing Details</label>
 
                         <div className="flex flex-col gap-5 w-full mt-10">
 

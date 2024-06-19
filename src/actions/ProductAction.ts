@@ -9,7 +9,7 @@ export async function GetFlashSales (){
     return products.docs.map(product => (product.data() as Product));
 }
 
-export async function GetBestSellingProducts(){
+export async function GetBestSellingProducts(p0: number){
     const products = (await admin.firestore().collection('products').orderBy('salesCount' , 'desc').limit(20).get())
     return products.docs.map(product => (product.data() as Product));
 }

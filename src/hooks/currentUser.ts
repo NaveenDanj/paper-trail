@@ -10,11 +10,11 @@ function useCurrentUser() {
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(async (user) => {
-        const ref = doc(db , 'user' , user?.uid+'')
-        const _user = (await getDoc(ref)).data() as User
-        console.log("user => " , _user)
-        setUser(_user);
-        setIsLoading(false);
+      const ref = doc(db , 'user' , user?.uid+'')
+      const _user = (await getDoc(ref)).data() as User
+      console.log("user => " , _user)
+      setUser(_user);
+      setIsLoading(false);
     });
 
     return unsubscribe;

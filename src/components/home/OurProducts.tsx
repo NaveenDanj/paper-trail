@@ -1,10 +1,21 @@
+'use client'
 import { GetRandomProductList } from "@/actions/ProductAction"
 import ProductCard from "../global/ProductCard"
+import { Product } from "@/types/types";
+import { useEffect, useState } from "react";
 
 
-export default async function OurProduct() {
+export default function OurProduct() {
 
-    const products = await GetRandomProductList()
+    const [products, setProduct] = useState<Product[]>([])
+
+    useEffect(() => {
+        fetchItems();
+    }, [])
+
+    const fetchItems = async () => {
+        // setProduct(await GetRandomProductList())
+    }
 
     return (
         <div className="pb-10 w-full flex flex-col justify-start items-start px-10 lg:px-24 mt-16">

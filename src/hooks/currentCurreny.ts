@@ -19,6 +19,7 @@ function useCurrentCurrency() {
             console.log(data2.lkr.usd);
             setRate(data2.lkr.usd)
         }
+        
     }
 
     useEffect(() => {

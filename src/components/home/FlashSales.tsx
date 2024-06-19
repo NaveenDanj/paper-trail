@@ -1,3 +1,4 @@
+'use client'
 
 import {
     Carousel,
@@ -8,11 +9,21 @@ import {
 } from "@/components/ui/carousel"
 import ProductCard from "../global/ProductCard"
 import { GetFlashSales } from "@/actions/ProductAction"
+import { useEffect, useState } from "react"
+import { Product } from "@/types/types"
 
 
-export default async function FlashSales() {
+export default function FlashSales() {
 
-    const products = await GetFlashSales();
+    const [products, setProduct] = useState<Product[]>([])
+
+    useEffect(() => {
+        fetchItems();
+    }, [])
+
+    const fetchItems = async () => {
+        // setProduct(await GetFlashSales())
+    }
 
     return (
         <div className="w-full flex flex-col justify-start items-start px-10 lg:px-24 mt-16">

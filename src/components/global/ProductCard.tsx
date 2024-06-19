@@ -5,10 +5,10 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import StarIcon from '@mui/icons-material/Star';
 import { CartItem, Product } from "@/types/types";
 import { useRouter } from "next/navigation";
-import useCurrentCart from "@/hooks/cart";
 import { useToast } from "@/components/ui/use-toast"
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { useEffect, useState } from "react";
+import useCurrentCurrency from "@/hooks/currentCurreny";
 
 
 type IProp = {
@@ -19,6 +19,8 @@ type IProp = {
 export default function ProductCard({ product }: IProp) {
     const { toast } = useToast()
     const [isUserWishlisted, setIsUserWishlisted] = useState<boolean>(false)
+    const { currentCurrency, rate } = useCurrentCurrency()
+    const router = useRouter()
 
 
     useEffect(() => {
@@ -31,8 +33,6 @@ export default function ProductCard({ product }: IProp) {
 
     }, [])
 
-
-    const router = useRouter()
 
     if (!product) {
         return (<label>Loading...</label>)
@@ -176,6 +176,14 @@ export default function ProductCard({ product }: IProp) {
 
     }
 
+    const renderPrice = async () => {
+        // if( currentCurrency === 'LKR'){
+        return product.price
+        // }
+        // }else{
+        //     return (product.price * rate).toFixed(2);
+        // }
+    }
 
     return (
         <div className="cursor-pointer group flex flex-col flex-grow max-w-[320px] px-3 pt-3">
@@ -207,7 +215,7 @@ export default function ProductCard({ product }: IProp) {
 
             <div onClick={handleNavigate} className="mt-3 flex flex-col gap-3">
                 <label className="text-md font-semibold">{product.name}</label>
-                <label className="text-sm font-semibold text-[#EF4444]">LKR {product.price} <span className="ml-2 line-through text-slate-800">$160</span> </label>
+                <label className="text-sm font-semibold text-[#EF4444]">LKR {renderPrice()} <span className="ml-2 line-through text-slate-800">$160</span> </label>
             </div>
 
 
