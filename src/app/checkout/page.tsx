@@ -1,8 +1,50 @@
+'use client'
+
+import CheckoutItem from "@/components/checkout/CheckoutItem";
 import Footer from "@/components/home/Footer";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
+import useCurrentCart from "@/hooks/cart";
+import useCurrentCurrency from "@/hooks/currentCurreny";
+import { CartItem, Product } from "@/types/types";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
 export default function Checkout() {
+
+    const { currentCurrency, rate } = useCurrentCurrency();
+    const router = useRouter();
+
+    const { total, cartData } = useCurrentCart();
+    const [discount, setDiscount] = useState(0);
+    const [rawTotal, setRawTotal] = useState(0);
+    const [subTotal, setSubTotal] = useState(0);
+    const [items, setItems] = useState<CartItem[]>([])
+
+    useEffect(() => {
+        const cartDataStr = localStorage.getItem('cart')
+        let cartDataObj = null
+
+        if (cartDataStr) {
+            cartDataObj = JSON.parse(cartDataStr) as CartItem[]
+            setItems(cartDataObj)
+            setRawTotal(0);
+            setSubTotal(0);
+            let t = 0;
+            for (let i = 0; i < cartDataObj.length; i++) {
+                t += cartDataObj[i].total
+            }
+            // t = t * rate
+            setRawTotal(t);
+            setSubTotal(t - discount)
+        } else {
+            router.replace('/')
+        }
+
+    }, [])
+
+
+
     return (
         <div className="w-full flex flex-col">
 
@@ -74,35 +116,7 @@ export default function Checkout() {
 
                         <div className="flex w-full flex-col gap-8 py-3 max-w-[350px]">
 
-                            <div className="flex w-full justify-between">
-
-                                <div className="flex gap-3 my-auto">
-                                    <Image alt="" width={40} height={40} src={'https://www.promateworld.com/storage/mango/paper/bpfg0370-rathna-foolscap-square-a3-250-sheets-pack-150x150.png'} />
-
-                                    <div className="my-auto ">
-                                        <label className="text-sm font-semibold">HAVIT HV-G92 Gamepad</label>
-                                    </div>
-
-                                </div>
-
-                                <label className="text-sm font-semibold my-auto">$650</label>
-
-                            </div>
-
-                            <div className="flex w-full justify-between">
-
-                                <div className="flex gap-3 my-auto">
-                                    <Image alt="" width={40} height={40} src={'https://www.promateworld.com/storage/mango/paper/bpfg0370-rathna-foolscap-square-a3-250-sheets-pack-150x150.png'} />
-
-                                    <div className="my-auto ">
-                                        <label className="text-sm font-semibold">HAVIT HV-G92 Gamepad</label>
-                                    </div>
-
-                                </div>
-
-                                <label className="text-sm font-semibold my-auto">$650</label>
-
-                            </div>
+                            {items.map((item, index) => (<CheckoutItem item={item} key={index} />))}
 
                             <div className="w-full flex flex-col gap-3 mt-5">
 

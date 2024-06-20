@@ -207,14 +207,14 @@ export default function ProductCard({ product }: IProp) {
                 </div>
 
                 <div>
-                    <Image className="bg-cover items-center" height={200} width={150} alt="" src={'https:' + product.images[0] + ''} />
+                    <Image onClick={handleNavigate} className="bg-cover items-center cursor-pointer" height={200} width={150} alt="" src={'https:' + product.images[0] + ''} />
                 </div>
 
             </div>
 
-            <div onClick={handleNavigate} className="mt-3 flex flex-col gap-3">
-                <label className="text-md font-semibold">{product.name}</label>
-                <label className="text-sm font-semibold text-[#EF4444]">{currentCurrency} {renderPrice()} <span className="ml-2 line-through text-slate-800">$160</span> </label>
+            <div onClick={handleNavigate} className="cursor-pointer mt-3 flex flex-col gap-3">
+                <label onClick={handleNavigate} className="cursor-pointer text-md font-semibold">{product.name}</label>
+                <label onClick={handleNavigate} className="cursor-pointer text-sm font-semibold text-[#EF4444]">{currentCurrency} {renderPrice()} <span className="ml-2 line-through text-slate-800">$160</span> </label>
             </div>
 
 

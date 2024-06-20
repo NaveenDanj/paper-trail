@@ -93,7 +93,7 @@ export default function ProductWrapper({ id }: IProp) {
                                 <StarIcon className="text-sm text-[#FFAD33]" />
                                 <StarIcon className="text-sm text-[#FFAD33]" />
                                 <StarIcon className="text-sm text-[#FFAD33]" />
-                                <label className="my-auto text-sm ml-2 font-medium text-[#808080]">(150 Reviews) | <span className="text-[#00FF66]">In Stock</span> </label>
+                                <label className="my-auto text-sm ml-2 font-medium text-[#808080]">(150 Reviews) | <span className="text-[#00FF66]">In Stock ({currentProduct.stock})</span> </label>
                             </div>
                             <label className="text-2xl font-semibold">{currentCurrency} {(currentProduct.price * rate).toFixed(2)}</label>
 
