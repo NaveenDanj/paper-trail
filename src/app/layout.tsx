@@ -25,7 +25,7 @@ export default function RootLayout({
 
         <Header />
 
-        <div className="w-full h-[calc(100vh-106px)] lg:h-[calc(100vh-119px)] overflow-y-auto">
+        <div className="w-full h-[calc(100vh-107px)] lg:h-[calc(100vh-119px)] overflow-y-auto">
           {/* <MainBanner />
             <FlashSales />
             <BrowsByCategories />
