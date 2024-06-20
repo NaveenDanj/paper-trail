@@ -9,6 +9,7 @@ import { CartItem, Product } from "@/types/types";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import currency from 'currency.js'
 
 export default function Checkout() {
 
@@ -16,9 +17,10 @@ export default function Checkout() {
     const router = useRouter();
 
     const { total, cartData } = useCurrentCart();
-    const [discount, setDiscount] = useState(0);
-    const [rawTotal, setRawTotal] = useState(0);
-    const [subTotal, setSubTotal] = useState(0);
+    const [discount, setDiscount] = useState<currency>(currency(0));
+    const [rawTotal, setRawTotal] = useState<currency>(currency(0));
+    const [subTotal, setSubTotal] = useState<currency>(currency(0));
+    const [shippingCost, setShippingCost] = useState(currency(300))
     const [items, setItems] = useState<CartItem[]>([])
 
     useEffect(() => {
@@ -28,15 +30,15 @@ export default function Checkout() {
         if (cartDataStr) {
             cartDataObj = JSON.parse(cartDataStr) as CartItem[]
             setItems(cartDataObj)
-            setRawTotal(0);
-            setSubTotal(0);
-            let t = 0;
+            setRawTotal(currency(0));
+            setSubTotal(currency(0));
+            let t = currency(0)
             for (let i = 0; i < cartDataObj.length; i++) {
-                t += cartDataObj[i].total
+                t = t.add(cartDataObj[i].total)
             }
-            // t = t * rate
             setRawTotal(t);
-            setSubTotal(t - discount)
+            const st = t.subtract(discount).add(shippingCost)
+            setSubTotal(st)
         } else {
             router.replace('/')
         }
@@ -122,22 +124,22 @@ export default function Checkout() {
 
                                 <div style={{ borderBottom: '1px solid rgba(0,0,0,0.2)' }} className="flex justify-between w-full pb-3">
                                     <label className=" font-medium text-sm">Subtotal:</label>
-                                    <label className=" font-medium text-sm">$1750</label>
+                                    <label className=" font-medium text-sm">{currentCurrency} {rawTotal.multiply(rate).toString()}</label>
                                 </div>
 
                                 <div style={{ borderBottom: '1px solid rgba(0,0,0,0.2)' }} className="flex justify-between w-full pb-3">
                                     <label className=" font-medium text-sm">Shipping:</label>
-                                    <label className=" font-medium text-sm">$1750</label>
+                                    <label className=" font-medium text-sm">{currentCurrency} {shippingCost.multiply(rate).toString()}</label>
                                 </div>
 
                                 <div style={{ borderBottom: '1px solid rgba(0,0,0,0.2)' }} className="flex justify-between w-full pb-3">
                                     <label className=" font-medium text-sm">Discount:</label>
-                                    <label className=" font-medium text-sm">$1750</label>
+                                    <label className=" font-medium text-sm">{currentCurrency} {discount.multiply(rate).toString()}</label>
                                 </div>
 
                                 <div className="flex justify-between w-full pb-3">
                                     <label className=" font-medium text-sm">Total:</label>
-                                    <label className=" font-medium text-sm">$1750</label>
+                                    <label className=" font-medium text-sm">{currentCurrency} {subTotal.multiply(rate).toString()}</label>
                                 </div>
 
                             </div>
