@@ -1,6 +1,7 @@
 import useCurrentCart from "@/hooks/cart";
 import useCurrentCurrency from "@/hooks/currentCurreny";
 import { CartItem } from "@/types/types";
+import currency from "currency.js";
 import Image from "next/image";
 import { useState, useEffect, Dispatch, SetStateAction } from "react";
 
@@ -18,7 +19,11 @@ export default function CartPageItem({ setCartMainData, cartItem, cartMainData, 
     const handleQtyChange = (qty: number) => {
         const updatedCartData = cartMainData.map(item =>
             item.productData.uid === cartItem.productData.uid
-                ? { ...item, quantity: qty, total: parseFloat((qty * item.productData.price).toFixed(2)) }
+                ? {
+                    ...item,
+                    quantity: qty,
+                    total: currency(qty).multiply(item.productData.price).value
+                }
                 : item
         );
         setCartMainData(updatedCartData);

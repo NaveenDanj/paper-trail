@@ -1,6 +1,7 @@
 import useCurrentCurrency from "@/hooks/currentCurreny";
 import { CartItem } from "@/types/types";
 import Image from "next/image";
+import currency from 'currency.js'
 
 type IProp = {
     item: CartItem
@@ -24,7 +25,7 @@ export default function CheckoutItem({ item }: IProp) {
 
             </div>
 
-            <label className="text-sm font-semibold my-auto">{currentCurrency} {(item.total * rate).toFixed(2)}</label>
+            <label className="text-sm font-semibold my-auto">{currentCurrency} {currency(item.total).multiply(rate).toString()}</label>
 
         </div>
     )
