@@ -1,3 +1,4 @@
+'use client'
 import Footer from "@/components/home/Footer";
 import { useParams } from 'next/navigation'
 import ProductWrapper from "@/components/product/ProductWrapper";

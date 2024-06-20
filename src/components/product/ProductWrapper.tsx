@@ -9,8 +9,8 @@ import ReviewSection from "@/components/product/ReviewSection";
 import CustomerReviews from "@/components/product/CustomerReviews";
 import { useEffect, useState } from "react";
 import { Product } from "@/types/types";
-import { GetProductInfo, GetRelatedProducts } from "@/actions/ProductAction";
 import { LoadingInlineComponent } from "../global/LoadingScreen";
+import useCurrentCurrency from "@/hooks/currentCurreny";
 
 
 type IProp = {
@@ -23,11 +23,15 @@ export default function ProductWrapper({ id }: IProp) {
     const [products, setProduct] = useState<Product[]>([]);
     const [currentProduct, setCurrentProduct] = useState<Product>()
     const [currentImage, setCurrentImage] = useState<string>()
+    const { currentCurrency, rate } = useCurrentCurrency();
+
 
     const fetchData = async () => {
-        const products = await GetRelatedProducts();
-        setProduct(products)
-        const cp = await GetProductInfo(id)
+
+
+        const response = await fetch(`/api/product-info/${id}`);
+        const cp = await response.json() as Product;
+
         setCurrentProduct(cp)
         setCurrentImage(cp.images[0])
         console.log(cp)
@@ -37,9 +41,15 @@ export default function ProductWrapper({ id }: IProp) {
         setCurrentImage(currentProduct?.images[index])
     }
 
+    const fetchItems = async () => {
+        const response = await fetch(`/api/best-selling`);
+        const data = await response.json() as Product[];
+        setProduct(data);
+    }
 
     useEffect(() => {
         fetchData();
+        fetchItems();
     }, [])
 
 
@@ -85,7 +95,7 @@ export default function ProductWrapper({ id }: IProp) {
                                 <StarIcon className="text-sm text-[#FFAD33]" />
                                 <label className="my-auto text-sm ml-2 font-medium text-[#808080]">(150 Reviews) | <span className="text-[#00FF66]">In Stock</span> </label>
                             </div>
-                            <label className="text-2xl font-semibold">LKR {currentProduct.price}</label>
+                            <label className="text-2xl font-semibold">{currentCurrency} {(currentProduct.price * rate).toFixed(2)}</label>
 
                             <div className="mt-4 text-sm font-semibold">
                                 <p>{currentProduct.description}</p>
