@@ -13,6 +13,11 @@ export default function CartWrapper() {
     const [changed, setChanged] = useState<number>(0);
 
     useEffect(() => {
+        setChanged(Math.random() * 100000)
+    }, [])
+
+
+    useEffect(() => {
         setCartMainData(cartData);
     }, [cartData]);
 

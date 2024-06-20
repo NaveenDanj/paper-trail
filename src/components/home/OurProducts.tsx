@@ -14,7 +14,9 @@ export default function OurProduct() {
     }, [])
 
     const fetchItems = async () => {
-        // setProduct(await GetRandomProductList())
+        const response = await fetch(`/api/flash-sales`);
+        const data = await response.json() as Product[];
+        setProduct(data);
     }
 
     return (

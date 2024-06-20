@@ -12,16 +12,18 @@ export default function WishListWrapper() {
     useEffect(() => {
         const wishlistStr = localStorage.getItem('wishlist');
 
-        if (wishlistStr != null) {
+        if (wishlistStr !== null) {
             setWishlist(JSON.parse(wishlistStr) as Product[])
         }
 
-        // fetchItems();
+        fetchItems();
 
     }, [])
 
     const fetchItems = async () => {
-        // setProduct(await GetProducts(10))
+        const response = await fetch(`/api/get-products-limit`);
+        const data = await response.json() as Product[];
+        setProduct(data);
     }
 
     return (

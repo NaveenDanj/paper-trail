@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/home/Header";
 import { Toaster } from "@/components/ui/toaster";
+import TopSection from "@/components/global/TopSection";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,9 +21,7 @@ export default function RootLayout({
     <html lang="en">
       <body className="flex min-h-screen flex-col">
 
-        <div className="text-white p-2 bg-black flex w-full justify-center text-center">
-          <label className="text-sm">Summer Sale For All Swim Suits And Free Express Delivery - OFF 50%!</label>
-        </div>
+        <TopSection />
 
         <Header />
 

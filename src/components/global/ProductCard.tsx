@@ -176,13 +176,12 @@ export default function ProductCard({ product }: IProp) {
 
     }
 
-    const renderPrice = async () => {
-        // if( currentCurrency === 'LKR'){
-        return product.price
-        // }
-        // }else{
-        //     return (product.price * rate).toFixed(2);
-        // }
+    const renderPrice = () => {
+        if (currentCurrency == 'LKR') {
+            return product.price
+        } else {
+            return (product.price * rate).toFixed(2);
+        }
     }
 
     return (
@@ -215,7 +214,7 @@ export default function ProductCard({ product }: IProp) {
 
             <div onClick={handleNavigate} className="mt-3 flex flex-col gap-3">
                 <label className="text-md font-semibold">{product.name}</label>
-                <label className="text-sm font-semibold text-[#EF4444]">LKR {renderPrice()} <span className="ml-2 line-through text-slate-800">$160</span> </label>
+                <label className="text-sm font-semibold text-[#EF4444]">{currentCurrency} {renderPrice()} <span className="ml-2 line-through text-slate-800">$160</span> </label>
             </div>
 
 

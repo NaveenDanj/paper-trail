@@ -22,7 +22,9 @@ export default function BestSeller() {
     }, [])
 
     const fetchItems = async () => {
-        // setProduct(await GetBestSellingProducts(10))
+        const response = await fetch(`/api/best-selling`);
+        const data = await response.json() as Product[];
+        setProduct(data);
     }
 
     return (

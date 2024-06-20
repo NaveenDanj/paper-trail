@@ -1,4 +1,5 @@
 import useCurrentCart from "@/hooks/cart";
+import useCurrentCurrency from "@/hooks/currentCurreny";
 import { CartItem } from "@/types/types";
 import Image from "next/image";
 import { useState, useEffect, Dispatch, SetStateAction } from "react";
@@ -11,6 +12,8 @@ type IProp = {
 }
 
 export default function CartPageItem({ setCartMainData, cartItem, cartMainData, setChanged }: IProp) {
+
+    const { currentCurrency, rate } = useCurrentCurrency();
 
     const handleQtyChange = (qty: number) => {
         const updatedCartData = cartMainData.map(item =>
@@ -32,12 +35,12 @@ export default function CartPageItem({ setCartMainData, cartItem, cartMainData, 
 
                 <div className="my-auto flex flex-col">
                     <label className="text-sm font-semibold">{cartItem.productData.name.length > 30 ? cartItem.productData.name.substring(0, 30) + '...' : cartItem.productData.name}</label>
-                    <label className="text-sm font-bold lg:hidden">LKR {cartItem.productData.price}</label>
+                    <label className="text-sm font-bold lg:hidden">{currentCurrency} {(cartItem.productData.price * rate).toFixed(2)}</label>
                 </div>
             </div>
 
             <div className=" text-left my-auto hidden lg:flex">
-                <label className="text-sm font-semibold">LKR {cartItem.productData.price}</label>
+                <label className="text-sm font-semibold">{currentCurrency} {(cartItem.productData.price * rate).toFixed(2)}</label>
             </div>
 
             <div className="justify-start w-full my-auto">
@@ -45,7 +48,7 @@ export default function CartPageItem({ setCartMainData, cartItem, cartMainData, 
             </div>
 
             <div className=" text-right my-auto">
-                <label className="text-sm font-semibold">LKR {cartItem.total}</label>
+                <label className="text-sm font-semibold">{currentCurrency} {(cartItem.total * rate).toFixed(2)}</label>
             </div>
 
         </div>

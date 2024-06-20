@@ -1,4 +1,5 @@
 import useCurrentCart from "@/hooks/cart";
+import useCurrentCurrency from "@/hooks/currentCurreny";
 import { CartItem } from "@/types/types";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -10,12 +11,16 @@ type IProp = {
 
 export default function CartTotalComponent({ changed }: IProp) {
 
+    const { currentCurrency, rate } = useCurrentCurrency();
+
+
     const { total, cartData } = useCurrentCart();
     const [discount, setDiscount] = useState(0);
     const [rawTotal, setRawTotal] = useState(0);
     const [subTotal, setSubTotal] = useState(0);
 
     useEffect(() => {
+        console.log('changed!!!!')
         // Calculate total whenever cartData changes
         const cartDataStr = localStorage.getItem('cart')
         let cartDataObj = null
@@ -28,8 +33,10 @@ export default function CartTotalComponent({ changed }: IProp) {
             for (let i = 0; i < cartDataObj.length; i++) {
                 t += cartDataObj[i].total
             }
+            // t = t * rate
             setRawTotal(t);
             setSubTotal(t - discount)
+            console.log('total is => ', t)
         }
 
         if (changed < 0) {
@@ -48,17 +55,17 @@ export default function CartTotalComponent({ changed }: IProp) {
 
                 <div style={{ borderBottom: '1px solid rgba(0,0,0,0.2)' }} className="flex justify-between w-full pb-3">
                     <label className=" font-medium text-sm">Total:</label>
-                    <label className=" font-medium text-sm">LKR {rawTotal.toFixed(2)}</label>
+                    <label className=" font-medium text-sm">{currentCurrency} {(rawTotal * rate).toFixed(2)}</label>
                 </div>
 
                 <div style={{ borderBottom: '1px solid rgba(0,0,0,0.2)' }} className="flex justify-between w-full pb-3">
                     <label className=" font-medium text-sm">Discount:</label>
-                    <label className=" font-medium text-sm">LKR {discount.toFixed(2)}</label>
+                    <label className=" font-medium text-sm">{currentCurrency} {(discount * rate).toFixed(2)}</label>
                 </div>
 
                 <div className="flex justify-between w-full pb-3">
                     <label className=" font-medium text-sm">Subtotal:</label>
-                    <label className=" font-medium text-sm">LKR {subTotal.toFixed(2)}</label>
+                    <label className=" font-medium text-sm">{currentCurrency} {(subTotal * rate).toFixed(2)}</label>
                 </div>
 
             </div>

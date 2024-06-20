@@ -1,15 +1,8 @@
-import { NextRequest, NextResponse } from 'next/server';
-import { GetProductInfo } from "@/actions/ProductAction";
+import { NextResponse } from 'next/server';
+import { GetRandomProductList } from "@/actions/ProductAction";
 
 
-interface Params {
-    params: {
-      id: string;
-    };
-}
-
-export async function GET(request: NextRequest, { params }:Params) {
-    const { id } = params;
-    const data = await GetProductInfo(id);
+export async function GET() {
+    const data = await GetRandomProductList();
     return NextResponse.json(data);
 }

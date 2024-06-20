@@ -9,6 +9,7 @@ interface Params {
 
 export async function GET(request: NextRequest, { params }:Params) {
     const { id } = params;
+    console.log("id is => " , id)
     const data = await GetProductInfo(id);
     return NextResponse.json(data);
 }

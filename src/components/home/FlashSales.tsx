@@ -8,7 +8,6 @@ import {
     CarouselPrevious,
 } from "@/components/ui/carousel"
 import ProductCard from "../global/ProductCard"
-import { GetFlashSales } from "@/actions/ProductAction"
 import { useEffect, useState } from "react"
 import { Product } from "@/types/types"
 
@@ -22,7 +21,9 @@ export default function FlashSales() {
     }, [])
 
     const fetchItems = async () => {
-        // setProduct(await GetFlashSales())
+        const response = await fetch(`/api/flash-sales`);
+        const data = await response.json() as Product[];
+        setProduct(data);
     }
 
     return (
