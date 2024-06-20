@@ -22,7 +22,7 @@ export default function Contact() {
 
 
                         <p className=" font-normal">We are available 24/7, 7 days a week.</p>
-                        <p className="mt-3 font-normal mb-5">Phone: +8801611112222</p>
+                        <p className="mt-3 font-normal mb-5"><span className="font-semibold">Phone:</span> +94 71 974 9699</p>
 
                         <div className="" style={{ borderTop: '1px solid rgba(0,0,0,0.4)' }}></div>
 
@@ -35,8 +35,8 @@ export default function Contact() {
                         </div>
 
                         <p className=" font-normal">Fill out our form and we will contact you within 24 hours.</p>
-                        <p className="mt-3 font-normal">Emails: customer@exclusive.com</p>
-                        <p className="mt-3 font-normal">Emails: support@exclusive.com</p>
+                        <p className="mt-3 font-normal"><span className="font-semibold">Emails:</span> thepapertrailonlinestore@gmail.com</p>
+                        <p className="mt-3 font-normal"><span className="font-semibold">Address:</span> No 21/1, Jayanthi Vidyala Mawatha, Nampamunuwa, Piliyandala</p>
 
 
                     </div>
