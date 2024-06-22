@@ -8,15 +8,15 @@ import { ProductInfo } from "@/components/product/ProductInfo";
 import ReviewSection from "@/components/product/ReviewSection";
 import CustomerReviews from "@/components/product/CustomerReviews";
 import { useEffect, useState } from "react";
-import { Product } from "@/types/types";
+import { CartItem, Product } from "@/types/types";
 import { LoadingInlineComponent } from "../global/LoadingScreen";
 import useCurrentCurrency from "@/hooks/currentCurreny";
-
+import currency from "currency.js";
+import { useRouter } from "next/navigation";
 
 type IProp = {
     id: string;
 }
-
 
 export default function ProductWrapper({ id }: IProp) {
 
@@ -24,21 +24,51 @@ export default function ProductWrapper({ id }: IProp) {
     const [currentProduct, setCurrentProduct] = useState<Product>()
     const [currentImage, setCurrentImage] = useState<string>()
     const { currentCurrency, rate } = useCurrentCurrency();
+    const [orderStock, setOrderStock] = useState(1)
+    const router = useRouter();
+    const [isUserWishlisted, setIsUserWishlisted] = useState<boolean>(false)
 
 
     const fetchData = async () => {
-
-
         const response = await fetch(`/api/product-info/${id}`);
         const cp = await response.json() as Product;
 
         setCurrentProduct(cp)
         setCurrentImage(cp.images[0])
         console.log(cp)
+
+        if (checkInWishList()) {
+            setIsUserWishlisted(true)
+        } else {
+            setIsUserWishlisted(false)
+        }
+
+
     }
 
     const handleSelectCurrentImage = async (index: number) => {
         setCurrentImage(currentProduct?.images[index])
+    }
+
+    const checkInWishList = () => {
+        const wishlistStr = localStorage.getItem('wishlist');
+
+        if (wishlistStr) {
+
+            const wishlist = JSON.parse(wishlistStr) as Product[]
+
+            for (let i = 0; i < wishlist.length; i++) {
+
+                if (wishlist[i].uid === id) {
+                    return true
+                }
+
+            }
+
+        }
+
+        return false
+
     }
 
     const fetchItems = async () => {
@@ -46,6 +76,7 @@ export default function ProductWrapper({ id }: IProp) {
         const data = await response.json() as Product[];
         setProduct(data);
     }
+
 
     useEffect(() => {
         fetchData();
@@ -60,6 +91,19 @@ export default function ProductWrapper({ id }: IProp) {
             </div>
         )
     }
+
+    const handleBuyItem = async () => {
+        let newCart = []
+        newCart.push({
+            productData: currentProduct,
+            quantity: orderStock,
+            total: currency(currentProduct.price).multiply(orderStock).value
+        } as CartItem)
+        localStorage.setItem('cart', JSON.stringify(newCart))
+        router.replace('/checkout')
+        return
+    }
+
 
 
     return (
@@ -95,7 +139,7 @@ export default function ProductWrapper({ id }: IProp) {
                                 <StarIcon className="text-sm text-[#FFAD33]" />
                                 <label className="my-auto text-sm ml-2 font-medium text-[#808080]">(150 Reviews) | <span className="text-[#00FF66]">In Stock ({currentProduct.stock})</span> </label>
                             </div>
-                            <label className="text-2xl font-semibold">{currentCurrency} {(currentProduct.price * rate).toFixed(2)}</label>
+                            <label className="text-2xl font-semibold">{currentCurrency} {currency(currentProduct.price).multiply(rate).toString()}</label>
 
                             <div className="mt-4 text-sm font-semibold">
                                 <p>{currentProduct.description}</p>
@@ -105,7 +149,7 @@ export default function ProductWrapper({ id }: IProp) {
 
                             <div className="flex flex-col w-full gap-5">
 
-                                <div className="flex w-full">
+                                {/* <div className="flex w-full">
                                     <label className="font-semibold">Colours:</label>
                                 </div>
 
@@ -136,28 +180,28 @@ export default function ProductWrapper({ id }: IProp) {
 
                                     </div>
 
-                                </div>
+                                </div> */}
 
                                 <div className="flex gap-3 w-full mt-3">
 
                                     <div style={{ border: '1px solid rgba(0,0,0,0.2)' }} className="flex">
-                                        <div style={{ borderRight: '1px solid rgba(0,0,0,0.2)' }} className=" cursor-pointer p-1 px-3">
+                                        <div onClick={() => { orderStock > 1 && setOrderStock(orderStock - 1) }} style={{ borderRight: '1px solid rgba(0,0,0,0.2)' }} className=" cursor-pointer p-1 px-3">
                                             <label className="">-</label>
                                         </div>
 
                                         <div className="p-1 px-5 rounded-md">
-                                            2
+                                            {orderStock}
                                         </div>
 
-                                        <div style={{ borderLeft: '1px solid rgba(0,0,0,0.2)', borderRight: '1px solid rgba(0,0,0,0.2)' }} className=" bg-[#DB4444] text-white cursor-pointer p-1 px-3">
+                                        <div onClick={() => { orderStock < currentProduct.stock && setOrderStock(orderStock + 1) }} style={{ borderLeft: '1px solid rgba(0,0,0,0.2)', borderRight: '1px solid rgba(0,0,0,0.2)' }} className=" bg-[#DB4444] text-white cursor-pointer p-1 px-3">
                                             <label className="">+</label>
                                         </div>
                                     </div>
 
-                                    <button className="bg-[#DB4444] w-[150px] rounded-md px-2 justify-center items-center text-white text-sm p-2 ">Buy Now</button>
+                                    <button onClick={handleBuyItem} className="bg-[#DB4444] w-[150px] rounded-md px-2 justify-center items-center text-white text-sm p-2 ">Buy Now</button>
 
                                     <div style={{ border: '1px solid rgba(0,0,0,0.2)' }} className=" rounded-lg cursor-pointer p-2 flex justify-center items-center">
-                                        <FavoriteBorderIcon className="text-sm" />
+                                        {!isUserWishlisted ? <FavoriteBorderIcon className="text-sm" /> : <FavoriteBorderIcon className="text-sm text-red-500" />}
                                     </div>
 
                                 </div>
