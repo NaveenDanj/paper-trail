@@ -36,7 +36,7 @@ export default function CartPageItem({ setCartMainData, cartItem, cartMainData, 
         <div className=" p-3 w-full flex-col gap-5 grid grid-cols-4 lg:grid lg:grid-cols-6 mt-7 shadow-lg">
 
             <div className="flex col-span-2 my-auto gap-2">
-                <Image alt="" width={50} height={50} src={'http:' + cartItem.productData.images[0]} />
+                <Image alt="" width={50} height={50} src={cartItem.productData.images[0]} />
 
                 <div className="my-auto flex flex-col">
                     <label className="text-sm font-semibold">{cartItem.productData.name.length > 30 ? cartItem.productData.name.substring(0, 30) + '...' : cartItem.productData.name}</label>

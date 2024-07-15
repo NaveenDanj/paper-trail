@@ -18,6 +18,10 @@ const nextConfig = {
         protocol: "http",
         hostname: "ae01.alicdn.com",
       },
+      {
+        hostname: "www.atlas.lk",
+        protocol: "https",
+      },
     ],
   },
 };

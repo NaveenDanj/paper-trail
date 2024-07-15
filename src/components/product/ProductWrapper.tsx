@@ -13,6 +13,8 @@ import { LoadingInlineComponent } from "../global/LoadingScreen";
 import useCurrentCurrency from "@/hooks/currentCurreny";
 import currency from "currency.js";
 import { useRouter } from "next/navigation";
+import FavoriteIcon from '@mui/icons-material/Favorite';
+
 
 type IProp = {
     id: string;
@@ -115,13 +117,13 @@ export default function ProductWrapper({ id }: IProp) {
                     <div className="lg:flex hidden flex-col gap-3">
 
                         {currentProduct.images.map((image: string, index: number) => (
-                            <Image style={{ border: image == currentImage ? '1px solid rgba(0,0,0,0.2)' : '' }} className=" cursor-pointer" onClick={() => handleSelectCurrentImage(index)} key={index} alt="" width={100} height={100} src={'https:' + image} />
+                            <Image style={{ border: image == currentImage ? '1px solid rgba(0,0,0,0.2)' : '' }} className=" cursor-pointer" onClick={() => handleSelectCurrentImage(index)} key={index} alt="" width={100} height={100} src={image} />
                         ))}
 
                     </div>
 
                     <div className="w-full flex justify-center">
-                        <Image className="bg-cover w-[90%] bg-center object-cover" alt="" width={400} height={500} src={'https://' + currentImage} />
+                        <Image className="bg-cover w-[90%] bg-center object-cover" alt="" width={400} height={500} src={currentImage} />
                     </div>
 
                 </div>
@@ -201,7 +203,7 @@ export default function ProductWrapper({ id }: IProp) {
                                     <button onClick={handleBuyItem} className="bg-[#DB4444] w-[150px] rounded-md px-2 justify-center items-center text-white text-sm p-2 ">Buy Now</button>
 
                                     <div style={{ border: '1px solid rgba(0,0,0,0.2)' }} className=" rounded-lg cursor-pointer p-2 flex justify-center items-center">
-                                        {!isUserWishlisted ? <FavoriteBorderIcon className="text-sm" /> : <FavoriteBorderIcon className="text-sm text-red-500" />}
+                                        {!isUserWishlisted ? <FavoriteBorderIcon className="text-sm" /> : <FavoriteIcon className="text-sm text-red-500" />}
                                     </div>
 
                                 </div>

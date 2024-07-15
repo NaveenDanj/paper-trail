@@ -207,7 +207,7 @@ export default function ProductCard({ product }: IProp) {
                 </div>
 
                 <div>
-                    <Image onClick={handleNavigate} className="bg-cover items-center cursor-pointer" height={200} width={150} alt="" src={'https:' + product.images[0] + ''} />
+                    <Image onClick={handleNavigate} className="bg-cover items-center cursor-pointer" height={200} width={150} alt="" src={product.images[0]} />
                 </div>
 
             </div>
