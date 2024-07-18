@@ -123,7 +123,7 @@ export default function ProductWrapper({ id }: IProp) {
                     </div>
 
                     <div className="w-full flex justify-center">
-                        <Image className="bg-cover w-[90%] bg-center object-cover" alt="" width={400} height={500} src={currentImage} />
+                        <Image className="bg-cover w-[90%] bg-center object-cover" alt="" width={400} height={500} src={currentImage + ''} />
                     </div>
 
                 </div>
